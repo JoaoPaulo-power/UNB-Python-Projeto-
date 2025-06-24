@@ -70,7 +70,7 @@ Armazena os arquivos `.json` que simulam o banco de dados:
 ```bash
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
-venv\\Scripts\\activate     # Windows
+venv\\Scripts\\activate     # Windows  rodar isso aqui pra ativar a venv 
 ```
 
 2. Entre dentro do seu projeto criado a partir do template e instale as dependências:
