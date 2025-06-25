@@ -45,7 +45,7 @@ class FuncionarioModel:
         if not os.path.exists(self.FILE_PATH):
             return []
         with open(self.FILE_PATH,'r', encoding='utf-8') as f:
-            return [Fucionario.from_dict(item) for item in json.load(f)]
+            return [Funcionario.from_dict(item) for item in json.load(f)]
         
     def _save(self):
         import json
