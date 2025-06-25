@@ -1,7 +1,8 @@
-from user import User
+import os
+from models.user import User, DATA_DIR
 
 class Fucionario(User):
-    def __init__(self, id, name, email, birthdate,lista_pedidos,lista_vistorias,salario):
+    def __init__(self, id, name, email, birthdate,salario, lista_pedidos = [], lista_vistorias = []):
         super().__init__(id, name, email, birthdate)
         self.lista_pedidos=lista_pedidos
         self.lista_vistorias=lista_vistorias
@@ -31,7 +32,7 @@ class Fucionario(User):
         )
   
 class FuncionarioModel:
-    FILE_PATH='data/funcionarios.json'
+    FILE_PATH = os.path.join(DATA_DIR, 'funcionarios.json')
 
     def __init__(self):
         self.funcionarios = self._load()
