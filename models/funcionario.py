@@ -1,7 +1,10 @@
+
+
+
 import os
 from models.user import User, DATA_DIR
 
-class Fucionario(User):
+class Funcionario(User):
     def __init__(self, id, name, email, birthdate,salario, lista_pedidos = [], lista_vistorias = []):
         super().__init__(id, name, email, birthdate)
         self.lista_pedidos=lista_pedidos
@@ -52,7 +55,7 @@ class FuncionarioModel:
     def get_all(self):
         return self.funcionarios
     
-    def det_by_id(self, funcionario_id):
+    def get_by_id(self, funcionario_id):
         return next((a for a in self.funcionarios if a.id == funcionario_id), None)
     
     def add(self, funcionario):
