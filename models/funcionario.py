@@ -33,6 +33,20 @@ class Funcionario(User):
             lista_vistorias=data['lista de vistorias'],
             salario=data['salário']
         )
+        
+    
+   #TODO implementar esse metodos     
+""" def pegar_pedido(self,pedido_adicinado):#pego ela da json dela e coloco aqui
+        self.lista_pedidos.append(pedido_adicinado)
+    
+    def pegar_vistoria(self, vistoria_adicionado):
+        self.lista_vistorias.append(vistoria_adicionado)        
+        
+    
+    def entregar_pedido(self):
+    def entregar_vistoria(self):
+    def receber_salario(self):
+         """
   
 class FuncionarioModel:
     FILE_PATH = os.path.join(DATA_DIR, 'funcionarios.json')
