@@ -2,7 +2,7 @@ import os
 from models.user import User, DATA_DIR
  
 class Cliente(User):
-    def __init__(self, id, name, email, birthdate,lista_carros,lista_pedidos,lista_vistorias):
+    def __init__(self, id, name, email, birthdate,lista_carros=[],lista_pedidos=[],lista_vistorias=[]):
         super().__init__(id, name, email, birthdate)
         self.lista_carros= lista_carros
         self.lista_pedidos=lista_pedidos
