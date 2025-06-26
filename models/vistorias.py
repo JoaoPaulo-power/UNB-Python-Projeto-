@@ -1,0 +1,70 @@
+import os
+from models.user import DATA_DIR
+class Vistoria:
+    def __init__(self,id,carro,funcionario,prazo):
+        self.id=id
+        self.carro=carro
+        self.funcionario=funcionario
+        self.prazo=prazo
+        
+    def to_dict(self):
+        return{
+            'id':self.id,
+            'carro':self.carro.to_dict(),
+            'funcionario':self.funcionario.to_dict(),
+            'prazo': self.prazo
+        }
+        
+    @classmethod
+    def from_dict(cls,data):
+        return cls(
+            id=data['id'],
+            carro=data['carro'],
+            funcionario=data['funcionario'],
+            prazo=data['prazo']
+        )
+        
+class VistoriasModel:
+    FILE_PATH = os.path.join(DATA_DIR, 'vistorias.json')
+    def __init__(self):
+        
+        self.vistorias=self._load()
+        
+    def _load(self):
+        import json,os
+        if not os.path.exists(self.FILE_PATH):
+            return []
+        with open(self.FILE_PATH,'r', encoding='utf-8') as f:
+            return [Vistoria.from_dict(item) for item in json.load(f)]
+        
+    def _save(self):
+        import json
+        with open (self.FILE_PATH,'w', encoding='utf-8') as f:
+            json.dump([a.to_dict() for a  in self.vistorias], f, indent=4, ensure_ascii=False)
+
+    def get_all(self):
+        return self.vistorias
+    
+    def get_by_id(self, vistoria_id):#retorna o objeto
+        return next((a for a in self.vistorias if a.id == vistoria_id), None)
+    
+    def add(self, vistoria):
+        self.vistorias.append(vistoria)
+        self._save()
+
+   
+    def update(self, updated_vistorias):
+        for i ,a in enumerate(self.vistorias):
+            if a.id == updated_vistorias.id:
+                self.vistorias[i] = updated_vistorias
+                self._save()
+                break
+    def delete(self,vistoria_id):
+        self.vistorias= [a for a in self.vistorias if a.id != vistoria_id]
+        self._save()
+
+      
+        
+    
+    
+        

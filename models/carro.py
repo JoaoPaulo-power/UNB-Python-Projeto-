@@ -58,7 +58,7 @@ class CarrosModel:
         return self.carros
     
     def get_by_id(self, numero_chassi):
-        return next((a for a in self.carros if a.id == numero_chassi), None)
+        return next((a for a in self.carros if a.numero_chassi == numero_chassi), None)
     
     def add(self, carro):
         self.carros.append(carro)
