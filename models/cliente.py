@@ -2,8 +2,8 @@ import os
 from models.user import User, DATA_DIR
  
 class Cliente(User):
-    def __init__(self, id, name, email, birthdate,lista_carros=[],lista_pedidos=[],lista_vistorias=[]):
-        super().__init__(id, name, email, birthdate)
+    def __init__(self, id, name, email, birthdate, senha,lista_carros=[],lista_pedidos=[],lista_vistorias=[]):
+        super().__init__(id, name, email, birthdate, senha)
         self.lista_carros= lista_carros
         self.lista_pedidos=lista_pedidos
         self.lista_vistorias=lista_vistorias
@@ -14,6 +14,7 @@ class Cliente(User):
             'name': self.name,
             'email': self.email,
             'birthdate': self.birthdate,
+            'senha':self.senha,
             'lista de pedidos':self.lista_pedidos,
             'lista de vistorias': self.lista_vistorias,
             'lista de carros': self.lista_carros
@@ -26,6 +27,7 @@ class Cliente(User):
             name=data['name'],
             email=data['email'],
             birthdate=data['birthdate'],
+            senha=data['senha'],
             lista_pedidos=data['lista de pedidos'],
             lista_vistorias=data['lista de vistorias'],
             lista_carros=data['lista de carros']

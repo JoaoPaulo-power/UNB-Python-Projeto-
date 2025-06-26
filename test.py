@@ -5,15 +5,22 @@ from models.funcionario import  FuncionarioModel,Funcionario
 from models.cliente import Cliente,ClienteModel
 from models.problema import Problema,ProblemaModel
 from models.carro import Carro,CarrosModel
+from models.user import User,UserModel
+
 
 car_model=CarrosModel()
 func_model = FuncionarioModel()
 cliente_model=ClienteModel()
 prob_model=ProblemaModel()
+user_model=UserModel()
 
-car1=Carro(1564,2024,'doblo','fiat')
-car_model.add(car1)
-print(car_model.get_all())
+user1=User(1,'teste','teste@gmail.com',456789,'13Gabri@')
+f1=Funcionario(12,'teste','teste@gmail.com',456789,'huihui',465)
+
+user_model.add_user(user1)
+
+func_model.add(f1)
+
 
 
 
