@@ -1,16 +1,7 @@
 [
     {
-        "id": 1,
+        "id": 10,
         "name": "teste",
-        "email": "lucas@email.com",
-        "birthdate": "10-09-2025",
-        "lista de pedidos": [],
-        "lista de vistorias": [],
-        "salário": 1000
-    },
-    {
-        "id": 111111,
-        "name": "gabriel",
         "email": "gabriel@email.com",
         "birthdate": "10-09-2025",
         "lista de pedidos": [
@@ -19,38 +10,5 @@
         ],
         "lista de vistorias": [],
         "salário": 2000
-    },
-    {
-        "id": 111111,
-        "name": "gabriel",
-        "email": "gabriel@email.com",
-        "birthdate": "10-09-2025",
-        "lista de pedidos": [
-            10,
-            20
-        ],
-        "lista de vistorias": [],
-        "salário": 2000
-    },
-    {
-        "id": 111111,
-        "name": "gabriel",
-        "email": "gabriel@email.com",
-        "birthdate": "10-09-2025",
-        "lista de pedidos": [
-            10,
-            20
-        ],
-        "lista de vistorias": [],
-        "salário": 2000
-    },
-    {
-        "id": 24,
-        "name": "gabriel",
-        "email": "gabriel@gmail.com",
-        "birthdate": "15072005",
-        "lista de pedidos": [],
-        "lista de vistorias": [],
-        "lista de carros": []
     }
 ]
