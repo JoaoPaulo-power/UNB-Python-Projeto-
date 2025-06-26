@@ -4,17 +4,18 @@
 from models.funcionario import  FuncionarioModel,Funcionario
 from models.cliente import Cliente,ClienteModel
 from models.problema import Problema,ProblemaModel
+from models.carro import Carro,CarrosModel
 
+car_model=CarrosModel()
 func_model = FuncionarioModel()
 cliente_model=ClienteModel()
 prob_model=ProblemaModel()
 
-p1=Problema(10,'vira-brequin',1200)
+car1=Carro(1564,2024,'doblo','fiat')
+car_model.add(car1)
+print(car_model.get_all())
 
-prob_model.add(p1)
-print(prob_model.get_all())
-prob_model.delete(1)
-print(func_model.get_all())
+
 
 """ f = Funcionario(id=10, name='teste', email='gabriel@email.com', birthdate='10-09-2025', salario=2000, lista_pedidos=[10, 20])
 func_model.add(f)  
