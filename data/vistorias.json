@@ -1,12 +1,14 @@
 [
     {
-        "id": 456789,
+        "id": 123,
         "carro": {
             "numero de chassi": 1564,
             "ano": 2024,
             "modelo": "doblo",
             "marca": "fiat",
-            "lista de problemas": []
+            "lista de problemas": [
+                "ola"
+            ]
         },
         "funcionario": {
             "id": 12,
@@ -18,6 +20,6 @@
             "lista de vistorias": [],
             "salário": 465
         },
-        "prazo": "2 dias"
+        "prazo": 123
     }
 ]

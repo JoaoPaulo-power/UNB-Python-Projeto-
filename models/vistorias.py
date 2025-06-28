@@ -1,9 +1,13 @@
 import os
 from models.user import DATA_DIR
+from models.carro import Carro
+from models.problema import Problema
+
+
 class Vistoria:
     def __init__(self,id,carro,funcionario,prazo):
         self.id=id
-        self.carro=carro
+        self.carro=carro# aqui eu to passando  objeto 
         self.funcionario=funcionario
         self.prazo=prazo
         
@@ -24,6 +28,15 @@ class Vistoria:
             prazo=data['prazo']
         )
         
+
+    def lançar_problema(self,problema):
+        carro= Carro.from_dict(self.carro)#objeto
+        new_problema=Problema.to_dict(problema)
+        carro.adicionar_problema(new_problema)
+        print('entrou aqui 1')
+        
+        
+
 class VistoriasModel:
     FILE_PATH = os.path.join(DATA_DIR, 'vistorias.json')
     def __init__(self):
@@ -66,5 +79,5 @@ class VistoriasModel:
       
         
     
-    
+         
         

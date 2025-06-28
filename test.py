@@ -17,9 +17,11 @@ user_model=UserModel()
 vis_model=VistoriasModel()
 pedi_model=PedidosModel()
 
-ped1=Pedido(123,car_model.get_by_id(1564),func_model.get_by_id(12),'2 dias','75%')
-pedi_model.add(ped1)
-print(pedi_model.get_all())
+
+
+
+
+
 
 
 

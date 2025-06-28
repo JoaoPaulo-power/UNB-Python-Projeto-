@@ -3,7 +3,7 @@ from models.user import DATA_DIR
 
 
 class Carro:
-    def __init__(self,numero_chassi ,problemas,ano,modelo='',marca=''):
+    def __init__(self,numero_chassi,ano,modelo,marca,problemas):
         self.numero_chassi=numero_chassi
         self.ano=ano
         self.modelo=modelo
@@ -28,10 +28,21 @@ class Carro:
             marca=data['marca'],
             problemas=data['lista de problemas']
         )
+    
+    def adicionar_problema(self,problema):
+        self.problemas=problema
+        carModel=CarrosModel()
+        new_car=Carro(self.numero_chassi,self.ano,self.modelo,self.marca,self.problemas)
+        carModel.update(new_car)
         
+        print('entrou aqui 2')
+        
+
+    
     """TODO precisa adicionar os tais metodos:
     def adicionar_problema(self):
     -> aqui ou em vistoria??
+    AQUI
     """
         
     
@@ -57,7 +68,7 @@ class CarrosModel:
     def get_all(self):
         return self.carros
     
-    def get_by_id(self, numero_chassi):
+    def get_by_chassi(self, numero_chassi):
         return next((a for a in self.carros if a.numero_chassi == numero_chassi), None)
     
     def add(self, carro):

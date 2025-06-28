@@ -4,6 +4,10 @@
         "ano": 2024,
         "modelo": "doblo",
         "marca": "fiat",
-        "lista de problemas": []
+        "lista de problemas": {
+            "id": 10,
+            "peça": "vira-brequin",
+            "preço": 1200
+        }
     }
 ]
