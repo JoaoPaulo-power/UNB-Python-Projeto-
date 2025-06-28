@@ -1,13 +1,15 @@
 [
     {
-        "numero de chassi": 1564,
-        "ano": 2024,
+        "numero de chassi": 123,
+        "ano": 2020,
         "modelo": "doblo",
         "marca": "fiat",
-        "lista de problemas": {
-            "id": 10,
-            "peça": "vira-brequin",
-            "preço": 1200
-        }
+        "lista de problemas": [
+            {
+                "id": 2,
+                "peça": "teste",
+                "preço": 123456
+            }
+        ]
     }
 ]

@@ -1,9 +1,12 @@
 [
     {
         "id": 10,
-        "peça": "vira-brequin",
+        "peça": "vira-brequin quebrado",
         "preço": 1200
+    },
+    {
+        "id": 2,
+        "peça": "teste",
+        "preço": 123456
     }
 ]
-
-

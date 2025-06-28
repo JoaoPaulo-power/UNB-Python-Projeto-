@@ -1,22 +1,24 @@
 import os
 from models.user import DATA_DIR
-from models.carro import Carro
+from models.carro import Carro,CarrosModel
 from models.problema import Problema
 
 
 class Vistoria:
-    def __init__(self,id,carro,funcionario,prazo):
+    def __init__(self,id,carro,status,funcionarios,prazo=''):
         self.id=id
         self.carro=carro# aqui eu to passando  objeto 
-        self.funcionario=funcionario
+        self.funcionarios=funcionarios if funcionarios is not None else []
         self.prazo=prazo
+        self.status=status
         
     def to_dict(self):
         return{
             'id':self.id,
-            'carro':self.carro.to_dict(),
-            'funcionario':self.funcionario.to_dict(),
-            'prazo': self.prazo
+            'carro':self.carro,
+            'funcionarios':self.funcionarios,
+            'prazo': self.prazo,
+            'status':self.status
         }
         
     @classmethod
@@ -24,8 +26,10 @@ class Vistoria:
         return cls(
             id=data['id'],
             carro=data['carro'],
-            funcionario=data['funcionario'],
-            prazo=data['prazo']
+            funcionarios=data['funcionarios'],
+            prazo=data['prazo'],
+            status=data['status']
+            
         )
         
 
@@ -33,7 +37,27 @@ class Vistoria:
         carro= Carro.from_dict(self.carro)#objeto
         new_problema=Problema.to_dict(problema)
         carro.adicionar_problema(new_problema)
-        print('entrou aqui 1')
+        
+        
+    def fechar_vistoria(self):
+        vis_model=VistoriasModel()
+        car_model=CarrosModel()
+        
+        self.status='closed'
+        new_satus=self.status
+        
+        carro=self.carro
+        old_carro= Carro.from_dict(carro)#objeto
+        new_car=car_model.get_by_chassi(old_carro.numero_chassi)#objeto
+        print(self.funcionario)
+        new_vist=Vistoria(self.id,new_car,self.funcionario,self.prazo,new_satus)
+        """ vis_model.update(new_vist) """
+        
+        """ new_vist=Vistoria(self.id,) """
+        
+        
+        
+                                   
         
         
 

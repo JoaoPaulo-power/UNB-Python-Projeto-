@@ -5,12 +5,6 @@
         "email": "teste@gmail.com",
         "birthdate": 456789,
         "senha": "13Gabri@"
-    },
-    {
-        "id": 1,
-        "name": "teste",
-        "email": "teste@gmail.com",
-        "birthdate": 456789,
-        "senha": "13Gabri@"
     }
+    
 ]

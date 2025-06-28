@@ -3,12 +3,12 @@ from models.user import DATA_DIR
 
 
 class Carro:
-    def __init__(self,numero_chassi,ano,modelo,marca,problemas):
+    def __init__(self,numero_chassi,ano,modelo='',marca='',problemas=None):
         self.numero_chassi=numero_chassi
         self.ano=ano
         self.modelo=modelo
         self.marca= marca
-        self.problemas=problemas
+        self.problemas=problemas if problemas is not None else []
     
     def to_dict(self):
         return{
@@ -30,20 +30,19 @@ class Carro:
         )
     
     def adicionar_problema(self,problema):
-        self.problemas=problema
-        carModel=CarrosModel()
+        
+        self.problemas.append(problema)#modifica
+        
+        carModel=CarrosModel()#atualiza
         new_car=Carro(self.numero_chassi,self.ano,self.modelo,self.marca,self.problemas)
         carModel.update(new_car)
         
-        print('entrou aqui 2')
+    
         
 
+    def rem_problema(self):
+        print('')
     
-    """TODO precisa adicionar os tais metodos:
-    def adicionar_problema(self):
-    -> aqui ou em vistoria??
-    AQUI
-    """
         
     
 class CarrosModel:

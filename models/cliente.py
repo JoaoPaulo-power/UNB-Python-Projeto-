@@ -34,8 +34,8 @@ class Cliente(User):
         )    
         
         #TODO implementar esse metodos
-        """def abrir_pedido(self)
-            def abrir_vistoria(self)
+        """def abrir_pedido(self)- > cadastrar 
+            def abrir_vistoria(self) -> cadastrar
             def cadastrar_carro(self)
             def pagar(self)
             """

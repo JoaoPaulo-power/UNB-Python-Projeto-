@@ -1,25 +1,26 @@
 [
     {
-        "id": 123,
+        "id": 1,
         "carro": {
-            "numero de chassi": 1564,
-            "ano": 2024,
+            "numero de chassi": 123,
+            "ano": 2020,
             "modelo": "doblo",
             "marca": "fiat",
-            "lista de problemas": [
-                "ola"
-            ]
+            "lista de problemas": []
         },
-        "funcionario": {
-            "id": 12,
-            "name": "teste",
-            "email": "teste@gmail.com",
-            "birthdate": 456789,
-            "senha": "huihui",
-            "lista de pedidos": [],
-            "lista de vistorias": [],
-            "salário": 465
-        },
-        "prazo": 123
+        "funcionarios": [
+            {
+                "id": 12,
+                "birthdate": 15072005,
+                "senha": 2000,
+                "salario": 2000,
+                "name": "teste",
+                "email": "teste",
+                "lista_pedidos": [],
+                "lista_vistorias": []
+            }
+        ],
+        "prazo": "3 dias",
+        "status": "open"
     }
 ]
