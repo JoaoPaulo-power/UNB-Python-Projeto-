@@ -3,7 +3,7 @@ from models.user import DATA_DIR
 
 
 class Carro:
-    def __init__(self,numero_chassi ,ano,modelo='',marca='',problemas=[]):
+    def __init__(self,numero_chassi ,problemas,ano,modelo='',marca=''):
         self.numero_chassi=numero_chassi
         self.ano=ano
         self.modelo=modelo

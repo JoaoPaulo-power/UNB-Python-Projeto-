@@ -7,6 +7,7 @@ from models.problema import Problema,ProblemaModel
 from models.carro import Carro,CarrosModel
 from models.user import User,UserModel
 from models.vistorias import Vistoria,VistoriasModel
+from models.pedidos import Pedido,PedidosModel
 
 car_model=CarrosModel()
 func_model = FuncionarioModel()
@@ -14,10 +15,15 @@ cliente_model=ClienteModel()
 prob_model=ProblemaModel()
 user_model=UserModel()
 vis_model=VistoriasModel()
+pedi_model=PedidosModel()
 
-vistoria1=Vistoria(456789,car_model.get_by_id(1564),func_model.get_by_id(12),"2 dias")
+ped1=Pedido(123,car_model.get_by_id(1564),func_model.get_by_id(12),'2 dias','75%')
+pedi_model.add(ped1)
+print(pedi_model.get_all())
 
-print(vistoria1.carro.numero_chassi)
+
+
+
 
 
 
