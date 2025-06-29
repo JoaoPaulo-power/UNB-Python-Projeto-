@@ -48,31 +48,20 @@ class Funcionario(User):
         status_vist=vistoria_adicionada_obj.status
         
         funcionario_obj=func_model.get_by_id(self.id)#objeto
-        new_func_dict=funcionario_obj.to_dict()
-        func_vist_list.append(new_func_dict)
+        new_func=funcionario_obj.id
+        func_vist_list.append(new_func)# adicionando func_id na lista dentro de vist 
         
-        func_vist_list1= func_vist_list
+        func_vist_list1_id= func_vist_list
         new_prazo=prazo
-        
-        new_vist=Vistoria(id_vist,carro_vist,status_vist,func_vist_list1,new_prazo)
+        new_vist=Vistoria(id_vist,carro_vist,status_vist,func_vist_list1_id,new_prazo)
         vist_model.update(new_vist) #atualizando a vistoria
-        
-        
-        
-       
-        vistoria_dict=vistoria_adicionada_obj.to_dict()
-        self.lista_vistorias.append(vistoria_dict)#editando
+        self.lista_vistorias.append(id_vist)#editando
         new_func=Funcionario(self.id,self.birthdate,self.senha,self.salario,self.name,self.email,self.lista_pedidos,self.lista_vistorias)
         # atualizando func
         func_model.update(new_func)
         
-        print('cheguei aqui 1')
         
         
- 
- 
-    
-            
         
     """ def pegar_pedido(self,pedido_adicinado):#pego ela da json dela e coloco aqui
         self.lista_pedidos.append(pedido_adicinado) """

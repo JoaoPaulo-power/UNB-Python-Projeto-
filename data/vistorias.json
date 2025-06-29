@@ -9,18 +9,9 @@
             "lista de problemas": []
         },
         "funcionarios": [
-            {
-                "id": 12,
-                "birthdate": 15072005,
-                "senha": 2000,
-                "salario": 2000,
-                "name": "teste",
-                "email": "teste",
-                "lista_pedidos": [],
-                "lista_vistorias": []
-            }
+            12
         ],
-        "prazo": "3 dias",
+        "prazo": "14 dias",
         "status": "open"
     }
 ]
