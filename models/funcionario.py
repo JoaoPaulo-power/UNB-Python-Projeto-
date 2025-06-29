@@ -61,6 +61,35 @@ class Funcionario(User):
         func_model.update(new_func)
         
         
+    def fechar_vist(self,id_vist):
+        vis_model=VistoriasModel()
+        func_model=FuncionarioModel()
+        vistoria_obj=vis_model.get_by_id(id_vist)# return obj
+        vistoria_obj.fechar_vistoria()# status = 'closed'
+        func_id_list=vistoria_obj.funcionarios
+        for func_id in func_id_list:
+            if func_id == self.id:
+                func_id_list.remove(func_id)
+                new_func_id_list=func_id_list
+                break
+        new_vist=Vistoria(vistoria_obj.id,vistoria_obj.carro,vistoria_obj.status,new_func_id_list,vistoria_obj.prazo)
+        vis_model.update(new_vist) #editando vistora
+        
+        vist_id_list=self.lista_vistorias
+        for vist_id in vist_id_list:
+            if vist_id == vistoria_obj.id:
+                vist_id_list.remove(vist_id)
+                new_vist_id_list=vist_id_list
+                break
+        new_func=Funcionario(self.id,self.birthdate,self.senha,self.salario,self.name,self.email,self.lista_pedidos,self.lista_vistorias)    
+        func_model.update(new_func)
+        
+        
+        
+        
+        
+        
+        
         
         
     """ def pegar_pedido(self,pedido_adicinado):#pego ela da json dela e coloco aqui

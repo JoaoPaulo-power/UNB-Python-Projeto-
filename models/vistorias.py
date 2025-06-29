@@ -40,20 +40,10 @@ class Vistoria:
         
         
     def fechar_vistoria(self):
-        vis_model=VistoriasModel()
-        car_model=CarrosModel()
-        
         self.status='closed'
-        new_satus=self.status
         
-        carro=self.carro
-        old_carro= Carro.from_dict(carro)#objeto
-        new_car=car_model.get_by_chassi(old_carro.numero_chassi)#objeto
-        print(self.funcionario)
-        new_vist=Vistoria(self.id,new_car,self.funcionario,self.prazo,new_satus)
-        """ vis_model.update(new_vist) """
         
-        """ new_vist=Vistoria(self.id,) """
+        
         
         
         

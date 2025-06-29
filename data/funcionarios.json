@@ -7,8 +7,6 @@
         "name": "teste",
         "email": "teste",
         "lista_pedidos": [],
-        "lista_vistorias": [
-            1
-        ]
+        "lista_vistorias": []
     }
 ]

@@ -26,7 +26,7 @@ vis_model.add(vistoria0) """
 vistoria= vis_model.get_by_id(1)#objeto
 problema2=prob_model.get_by_id(2)#objeto
 
-func1.pegar_vistoria(vistoria,'14 dias')
+func1.fechar_vist(1)
 
 
 

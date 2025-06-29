@@ -8,10 +8,8 @@
             "marca": "fiat",
             "lista de problemas": []
         },
-        "funcionarios": [
-            12
-        ],
+        "funcionarios": [],
         "prazo": "14 dias",
-        "status": "open"
+        "status": "closed"
     }
 ]
