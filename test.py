@@ -29,7 +29,8 @@ vistoria= vis_model.get_by_id(1)#objeto
 problema2=prob_model.get_by_id(2)#objeto
 
 
-func1.pegar_pedido(20)
+func1.fechar_pedido(20)
+
 
 
 

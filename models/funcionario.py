@@ -5,6 +5,8 @@ import os
 from models.user import User, DATA_DIR
 from models.vistorias import Vistoria,VistoriasModel
 from models.pedidos import Pedido,PedidosModel
+from models.carro import Carro,CarrosModel
+from models.problema import ProblemaModel,Problema
 
 class Funcionario(User):
     def __init__(self, id, birthdate, senha,salario, name='', email='', lista_pedidos=[], lista_vistorias=[]):
@@ -102,6 +104,53 @@ class Funcionario(User):
         new_ped=Pedido(pedido_obj.id,pedido_obj.carro,pedido_obj.status,pedido_obj.funcionarios,prazo)
         ped_model.update(new_ped)
         
+    def consertar_carro(self,id_pedido):
+       ped_model=PedidosModel() 
+       car_model=CarrosModel()
+       
+       pedido=ped_model.get_by_id(id_pedido)
+       broken_car_dict=pedido.carro
+       broken_car_obj=Carro.from_dict(broken_car_dict)
+       list_probelmas=broken_car_obj.problemas
+       global comissao
+       for prob in list_probelmas:
+           prob_obj=Problema.from_dict(prob)
+           preco_prob=prob_obj.preco
+           comissao=+(preco_prob/100)*20
+    
+       comissao=round(comissao,2)
+       new_salario=self.salario+comissao# editando
+       list_probelmas.clear()# tirando probelmas
+       
+       
+       new_car=Carro(broken_car_obj.numero_chassi,broken_car_obj.ano,broken_car_obj.modelo,broken_car_obj.marca,list_probelmas)
+       car_model.update(new_car)
+       return new_salario
+       
+    def fechar_pedido(self,id_pedido):
+        new_salario=self.consertar_carro(id_pedido)
+        ped_model=PedidosModel() 
+        func_model=FuncionarioModel()
+        pedido_obj=ped_model.get_by_id(id_pedido)
+        
+        new_status=pedido_obj.status='closed'
+        list_id_pedidos=self.lista_pedidos
+        for id_ped in list_id_pedidos:
+            if id_ped == id_pedido:
+                list_id_pedidos.remove(id_pedido)
+                break
+        
+        
+        new_func=Funcionario(self.id,self.birthdate,self.senha,new_salario,self.name,self.email,list_id_pedidos,self.lista_vistorias)
+        func_model.update(new_func)
+        
+        new_pedido=Pedido(pedido_obj.id,pedido_obj.carro,new_status,pedido_obj.funcionarios,pedido_obj.prazo,'100%')
+        ped_model.update(new_pedido)
+        print('cheuei aqui 1')
+        
+        
+        
+       
         
         
         

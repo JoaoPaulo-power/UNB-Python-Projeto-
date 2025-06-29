@@ -3,15 +3,10 @@
         "id": 12,
         "birthdate": 15072005,
         "senha": 2000,
-        "salario": 2000,
+        "salario": 160.0,
         "name": "teste",
         "email": "teste",
-        "lista_pedidos": [
-            1,
-            1,
-            20,
-            20
-        ],
+        "lista_pedidos": [],
         "lista_vistorias": []
     }
 ]

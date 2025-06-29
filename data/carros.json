@@ -4,12 +4,6 @@
         "ano": 2020,
         "modelo": "doblo",
         "marca": "fiat",
-        "lista de problemas": [
-            {
-                "id": 2,
-                "peça": "teste",
-                "preço": 123456
-            }
-        ]
+        "lista de problemas": []
     }
 ]

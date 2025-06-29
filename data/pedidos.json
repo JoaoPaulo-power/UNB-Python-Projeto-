@@ -10,7 +10,7 @@
                 {
                     "id": 2,
                     "peça": "teste",
-                    "preço": 123456
+                    "preço": 100
                 }
             ]
         },
@@ -18,7 +18,7 @@
             12
         ],
         "prazo": "",
-        "status": "open",
-        "progresso": ""
+        "status": "closed",
+        "progresso": "100%"
     }
 ]
