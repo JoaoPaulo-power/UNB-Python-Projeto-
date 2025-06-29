@@ -148,20 +148,8 @@ class Funcionario(User):
         ped_model.update(new_pedido)
         print('cheuei aqui 1')
         
-        
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
-     
-    """ def entregar_pedido(self):
-    def entregar_vistoria(self):
+ 
+    """
     def receber_salario(self): """ 
      
         

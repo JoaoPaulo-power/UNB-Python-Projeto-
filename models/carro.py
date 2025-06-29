@@ -36,15 +36,7 @@ class Carro:
         carModel=CarrosModel()#atualiza
         new_car=Carro(self.numero_chassi,self.ano,self.modelo,self.marca,self.problemas)
         carModel.update(new_car)
-        
-    
-        
 
-    def rem_problema(self):
-        print('')
-    
-        
-    
 class CarrosModel:
     FILE_PATH = os.path.join(DATA_DIR, 'carros.json')
 
