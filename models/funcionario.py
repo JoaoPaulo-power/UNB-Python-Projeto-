@@ -4,6 +4,7 @@
 import os
 from models.user import User, DATA_DIR
 from models.vistorias import Vistoria,VistoriasModel
+from models.pedidos import Pedido,PedidosModel
 
 class Funcionario(User):
     def __init__(self, id, birthdate, senha,salario, name='', email='', lista_pedidos=[], lista_vistorias=[]):
@@ -85,6 +86,21 @@ class Funcionario(User):
         func_model.update(new_func)
         
         
+    def pegar_pedido(self,id_pedido,prazo=''):
+        #adicionar o id_pedido no funcionario e adicionar o id_funcionario no pedido
+        ped_model=PedidosModel()
+        func_model=FuncionarioModel()
+        pedido_obj=ped_model.get_by_id(id_pedido)
+        
+        pedi_id_list=self.lista_pedidos
+        pedi_id_list.append(id_pedido)
+        new_func=Funcionario(self.id,self.birthdate,self.senha,self.salario,self.name,self.email,self.lista_pedidos,self.lista_vistorias)
+        func_model.update(new_func)
+        
+        
+        pedido_obj.funcionarios.append(self.id)
+        new_ped=Pedido(pedido_obj.id,pedido_obj.carro,pedido_obj.status,pedido_obj.funcionarios,prazo)
+        ped_model.update(new_ped)
         
         
         
@@ -92,8 +108,9 @@ class Funcionario(User):
         
         
         
-    """ def pegar_pedido(self,pedido_adicinado):#pego ela da json dela e coloco aqui
-        self.lista_pedidos.append(pedido_adicinado) """
+        
+        
+     
     """ def entregar_pedido(self):
     def entregar_vistoria(self):
     def receber_salario(self): """ 

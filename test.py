@@ -16,17 +16,22 @@ prob_model=ProblemaModel()
 user_model=UserModel()
 vis_model=VistoriasModel()
 pedi_model=PedidosModel()
-
+""" pedido1=Pedido(20,carro,'open')
+pedi_model.add(pedido1) """
 
 func1=func_model.get_by_id(12)#objeto/dicionario
 
 carro=car_model.get_by_chassi(123)#objeto
-""" vistoria0=Vistoria(1,carro,'open')
-vis_model.add(vistoria0) """
+
+pedido1=pedi_model.get_by_id(1)#objeto
+
 vistoria= vis_model.get_by_id(1)#objeto
 problema2=prob_model.get_by_id(2)#objeto
 
-func1.fechar_vist(1)
+
+func1.pegar_pedido(20)
+
+
 
 
 
