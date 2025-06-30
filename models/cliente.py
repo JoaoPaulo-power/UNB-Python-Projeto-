@@ -2,11 +2,11 @@ import os
 from models.user import User, DATA_DIR
  
 class Cliente(User):
-    def __init__(self, id, name, email, birthdate, senha,lista_carros=[],lista_pedidos=[],lista_vistorias=[]):
+    def __init__(self, id, name, email, birthdate, senha,lista_carros=None,lista_pedidos=None,lista_vistorias=None):
         super().__init__(id, name, email, birthdate, senha)
-        self.lista_carros= lista_carros
-        self.lista_pedidos=lista_pedidos
-        self.lista_vistorias=lista_vistorias
+        self.lista_carros= lista_carros if lista_carros is not None else []
+        self.lista_pedidos=lista_pedidos if lista_pedidos is not None else []
+        self.lista_vistorias=lista_vistorias if lista_vistorias is not None else []
     
     def to_dict(self):
         return {
@@ -15,9 +15,9 @@ class Cliente(User):
             'email': self.email,
             'birthdate': self.birthdate,
             'senha':self.senha,
-            'lista de pedidos':self.lista_pedidos,
-            'lista de vistorias': self.lista_vistorias,
-            'lista de carros': self.lista_carros
+            'lista de pedidos':[pedido.to_dict() for pedido in self.lista_pedidos],
+            'lista de vistorias': [vistorias.to_dict() for vistorias in self.lista_vistorias],
+            'lista de carros': [carro.to_dict() if hasattr(carro, 'to_dict') else carro for carro in self.lista_carros]
         }
     
     @classmethod
@@ -73,7 +73,7 @@ class ClienteModel:
     def update(self, updated_cliente):
         for i ,a in enumerate(self.clientes):
             if a.id == updated_cliente.id:
-                self.funcionario[i] = updated_cliente
+                self.clientes[i] = updated_cliente
                 self._save()
                 break
     

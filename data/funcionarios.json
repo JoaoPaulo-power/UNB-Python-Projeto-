@@ -1,12 +1,14 @@
 [
     {
-        "id": 12,
-        "birthdate": 15072005,
-        "senha": 2000,
-        "salario": 160.0,
+        "id": 1,
+        "birthdate": "15/7/2005",
+        "senha": 123,
+        "salario": 100,
         "name": "teste",
         "email": "teste",
         "lista_pedidos": [],
-        "lista_vistorias": []
+        "lista_vistorias": [
+            1
+        ]
     }
 ]

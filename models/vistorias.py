@@ -5,7 +5,7 @@ from models.problema import Problema
 
 
 class Vistoria:
-    def __init__(self,id,carro,status,funcionarios,prazo=''):
+    def __init__(self,id,carro,status,funcionarios=None,prazo=''):
         self.id=id
         self.carro=carro# aqui eu to passando  objeto 
         self.funcionarios=funcionarios if funcionarios is not None else []
@@ -15,7 +15,7 @@ class Vistoria:
     def to_dict(self):
         return{
             'id':self.id,
-            'carro':self.carro,
+            'carro':self.carro.to_dict() if isinstance(self.carro, Carro) else self.carro,
             'funcionarios':self.funcionarios,
             'prazo': self.prazo,
             'status':self.status

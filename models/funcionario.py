@@ -45,14 +45,14 @@ class Funcionario(User):
         func_model=FuncionarioModel()
         vist_model=VistoriasModel()
         
-        id_vist=vistoria_adicionada_obj.id
+        id_vist=vistoria_adicionada_obj.id#captura atributos
         carro_vist=vistoria_adicionada_obj.carro
         func_vist_list=vistoria_adicionada_obj.funcionarios
         status_vist=vistoria_adicionada_obj.status
         
         funcionario_obj=func_model.get_by_id(self.id)#objeto
-        new_func=funcionario_obj.id
-        func_vist_list.append(new_func)# adicionando func_id na lista dentro de vist 
+        new_func_id=funcionario_obj.id
+        func_vist_list.append(new_func_id)# adicionando func_id na lista dentro de vist 
         
         func_vist_list1_id= func_vist_list
         new_prazo=prazo

@@ -1,35 +1,30 @@
-# arquivo pra testar os models.
+# arquivo pra testar tudo
 
 
-from models.funcionario import  FuncionarioModel,Funcionario
-from models.cliente import Cliente,ClienteModel
-from models.problema import Problema,ProblemaModel
-from models.carro import Carro,CarrosModel
-from models.user import User,UserModel
-from models.vistorias import Vistoria,VistoriasModel
-from models.pedidos import Pedido,PedidosModel
 
-car_model=CarrosModel()
-func_model = FuncionarioModel()
-cliente_model=ClienteModel()
-prob_model=ProblemaModel()
-user_model=UserModel()
-vis_model=VistoriasModel()
-pedi_model=PedidosModel()
-""" pedido1=Pedido(20,carro,'open')
-pedi_model.add(pedido1) """
-
-func1=func_model.get_by_id(12)#objeto/dicionario
-
-carro=car_model.get_by_chassi(123)#objeto
-
-pedido1=pedi_model.get_by_id(1)#objeto
-
-vistoria= vis_model.get_by_id(1)#objeto
-problema2=prob_model.get_by_id(2)#objeto
+from services.carro_service import CarroService,Carro
+from services.cliente_service import ClienteService,Cliente,ClienteModel
+from services.funcionario_service import FuncionarioService,Funcionario,FuncionarioModel
+from services.user_service import UserService,User
+from services.vistoria_service import VistoriaService,Vistoria
 
 
-func1.fechar_pedido(20)
+car_service=CarroService()
+cliente_service=ClienteService()
+func_service=FuncionarioService()
+user_dervice= UserService()
+Vist_service=VistoriaService()
+
+cliente=cliente_service.get_by_id(1)#obj
+funcionario=func_service.get_by_id(1)#obj
+carro=car_service.get_by_chassi(123)
+vistoria=Vist_service.get_by_id(1)
+
+func_service.pegar_vist(funcionario.id,vistoria.id,'3 dias')
+
+
+
+
 
 
 

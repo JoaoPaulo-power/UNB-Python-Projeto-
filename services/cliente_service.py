@@ -1,14 +1,16 @@
 from bottle import request
 from models.cliente import Cliente,ClienteModel
+from services.carro_service import Carro,CarrosModel,CarroService
+from services.vistoria_service import Vistoria,VistoriaService,VistoriasModel
 
-class ServiceCliente:
+class ClienteService:
     def __init__(self):
         self.cliente_model= ClienteModel()
         
     def get_all(self):
         self.cliente_model.get_all()
         
-    def save(self):# cadastra clientes
+    def save(self):# cadastra clientes pelo o html
         last_id= max([u.id for u in self.cliente_model.get_all()],default=0)
         new_id= last_id+1
         name=request.forms.get('name')
@@ -38,4 +40,34 @@ class ServiceCliente:
     def delete(self,cliente_id):
         self.cliente_model.delete(cliente_id)
     
+    def cad_carro(self,cliente_id,numero_chassi,ano,modelo='',marca='',problemas=None):
+        car_model=CarrosModel()
+        cliente_model=ClienteModel()
+        carro=Carro(numero_chassi,ano,modelo,marca,problemas)
+        car_model.add(carro)#adicionando carro 
+        
+        cliente=self.get_by_id(cliente_id)
+        cliente.lista_carros.append(carro)#adicionando ao cliente
+        cliente_model.update(cliente)
+        
+        
+    def cad_vist(self,cliente_id,id,carro,status,funcionarios=None,prazo=''):
+        vist_model=VistoriasModel()
+        cliente_model=ClienteModel()
+        vistoria=Vistoria(id,carro,status,funcionarios,prazo)
+        vist_model.add(vistoria)# adicionando vistoria
+        
+        cliente=self.cliente_model.get_by_id(cliente_id)
+        cliente.lista_vistorias.append(vistoria)#altera lista
+        cliente_model.update(cliente)#atualiza
+        
+        
+        
+        
+        
+        
+    
+    
+        
+        
         

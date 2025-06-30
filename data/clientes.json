@@ -1,12 +1,34 @@
 [
     {
-        "id": 12,
+        "id": 1,
         "name": "teste",
-        "email": "teste/2gmial.com",
-        "birthdate": 456789,
-        "senha": "456789",
+        "email": "teste",
+        "birthdate": "15/07/2005",
+        "senha": "123",
         "lista de pedidos": [],
-        "lista de vistorias": [],
-        "lista de carros": []
+        "lista de vistorias": [
+            {
+                "id": 1,
+                "carro": {
+                    "numero de chassi": 123,
+                    "ano": 2020,
+                    "modelo": "doblo",
+                    "marca": "fiat",
+                    "lista de problemas": []
+                },
+                "funcionarios": [],
+                "prazo": "",
+                "status": "open"
+            }
+        ],
+        "lista de carros": [
+            {
+                "numero de chassi": 123,
+                "ano": 2020,
+                "modelo": "doblo",
+                "marca": "fiat",
+                "lista de problemas": []
+            }
+        ]
     }
 ]

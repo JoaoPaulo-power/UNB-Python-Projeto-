@@ -1,7 +1,7 @@
 from bottle import request
 from models.carro import Carro,CarrosModel  
 
-class ServiceCarro:    
+class CarroService:    
     def __init__(self):
         self.carro_model= CarrosModel()
 
@@ -20,8 +20,8 @@ class ServiceCarro:
         carro=Carro(new_numero_chassi,ano,modelo,marca,problemas)
         self.carro_model.add(carro)
         
-    def get_by_id(self,carro_numero_chassi):# retorna um exclusivo
-        return self.carro_model.get_by_id()
+    def get_by_chassi(self,carro_numero_chassi):# retorna um exclusivo
+        return self.carro_model.get_by_chassi(carro_numero_chassi)
 
     def edit_carro(self,carro_obj):# editando um funcionario e as sub
         carro_obj.ano = request.forms.get('ano')
