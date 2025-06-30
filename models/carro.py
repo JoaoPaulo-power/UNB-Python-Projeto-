@@ -21,6 +21,7 @@ class Carro:
         
     @classmethod
     def from_dict(cls,data):
+        print(data)
         return cls(
             numero_chassi=data['numero de chassi'],
             ano=data['ano'],

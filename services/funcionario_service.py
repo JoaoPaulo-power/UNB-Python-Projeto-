@@ -1,6 +1,8 @@
 from bottle import request
 from models.funcionario import Funcionario, FuncionarioModel
 from services.vistoria_service import VistoriasModel,VistoriaService,Vistoria
+from models.problema import Problema,ProblemaModel 
+from services.carro_service import Carro,CarrosModel,CarroService
 class FuncionarioService:
     def __init__(self):
         self.funcionario_model= FuncionarioModel()
@@ -51,11 +53,55 @@ class FuncionarioService:
         func=self.get_by_id(func_id)
         func.lista_vistorias.append(vistoria.id)#adicinando a vist no meu func 
         func_model.update(func)#atualizando
-        
+
+
         
         list_func= vistoria.funcionarios#editando
         list_func.append(func.id)#editando
+        vistoria.prazo=prazo
         vist_model.update(vistoria)#salvando
-        print('cheguei aqui 1')
-
         
+        print('vistoria pega')
+
+    def cad_problema(self,id,preco,peca=''):
+        prob=Problema(id,peca,preco)
+        ProblemaModel().add(prob)#salvando problema
+        print('problema cadastrado')
+
+    def add_prob(self,id_vist,id_prob):
+        vist=VistoriasModel().get_by_id(id_vist)
+        vist_carro=vist.carro
+        vist_carro_obj=Carro.from_dict(vist_carro)
+        prob=ProblemaModel().get_by_id(id_prob)
+
+        vist_carro_obj.problemas.append(prob.to_dict())#adicionando problema_dict a carro
+        CarrosModel().update(vist_carro_obj)#atualizando carro
+        vist_carro_dict=vist_carro_obj.to_dict()
+        vist_carro=vist_carro_dict
+        VistoriasModel().update(vist)#atualizando vistoria
+        print('problema adicionado')
+        
+
+    def entregar_vist(self,id_func,id_vist,id_prob):
+        vist_service=VistoriaService()
+        vist_model=VistoriasModel()
+        func_model=FuncionarioModel()
+
+        self.add_prob(id_vist,id_prob)
+        vistoria=vist_service.get_by_id(id_vist)
+        vistoria.status='closed'
+
+        funcionario=self.get_by_id(id_func)
+        vist_list_id=funcionario.lista_vistorias
+        for vist_id in vist_list_id:
+            if vist_id == id_vist:
+                vist_list_id.remove(vist_id)# removendo vist da lista
+                break
+        
+        func_model.update(funcionario)
+        vist_model.update(vistoria)
+        print('vistoria entregue')
+
+
+
+

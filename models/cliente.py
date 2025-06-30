@@ -15,8 +15,8 @@ class Cliente(User):
             'email': self.email,
             'birthdate': self.birthdate,
             'senha':self.senha,
-            'lista de pedidos':[pedido.to_dict() for pedido in self.lista_pedidos],
-            'lista de vistorias': [vistorias.to_dict() for vistorias in self.lista_vistorias],
+            'lista de pedidos':[pedido.to_dict() if hasattr(pedido, 'to_dict') else pedido for pedido in self.lista_pedidos],
+            'lista de vistorias': [vistorias.to_dict() if hasattr(vistorias, 'to_dict') else vistorias for vistorias in self.lista_vistorias],
             'lista de carros': [carro.to_dict() if hasattr(carro, 'to_dict') else carro for carro in self.lista_carros]
         }
     

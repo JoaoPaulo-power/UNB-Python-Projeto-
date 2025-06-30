@@ -1,10 +1,15 @@
 [
     {
-        "numero de chassi": 123,
-        "ano": 2020,
-        "modelo": "doblo",
-        "marca": "fiat",
-        "lista de problemas": []
+        "numero de chassi": 12,
+        "ano": ".",
+        "modelo": ".",
+        "marca": ".",
+        "lista de problemas": [
+            {
+                "id": 1,
+                "peça": "peça",
+                "preço": 1
+            }
+        ]
     }
-    
 ]

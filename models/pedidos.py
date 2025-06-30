@@ -10,7 +10,7 @@ class Pedido(Vistoria):
     def to_dict(self):
         return {
             'id':self.id,
-            'carro':self.carro,
+            'carro':self.carro.to_dict(),
             'funcionario':self.funcionarios,
             'prazo':self.prazo,
             'status':self.status,

@@ -2,16 +2,16 @@
     {
         "id": 1,
         "carro": {
-            "numero de chassi": 123,
-            "ano": 2020,
-            "modelo": "doblo",
-            "marca": "fiat",
+            "numero de chassi": 12,
+            "ano": ".",
+            "modelo": ".",
+            "marca": ".",
             "lista de problemas": []
         },
         "funcionarios": [
-            1
+            2
         ],
-        "prazo": "",
-        "status": "open"
+        "prazo": "2 dias",
+        "status": "closed"
     }
 ]

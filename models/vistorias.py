@@ -33,7 +33,7 @@ class Vistoria:
         )
         
 
-    def lançar_problema(self,problema):
+    def lancar_problema(self,problema):
         carro= Carro.from_dict(self.carro)#objeto
         new_problema=Problema.to_dict(problema)
         carro.adicionar_problema(new_problema)
