@@ -29,13 +29,7 @@ class Carro:
             problemas=data['lista de problemas']
         )
     
-    def adicionar_problema(self,problema):
-        
-        self.problemas.append(problema)#modifica
-        
-        carModel=CarrosModel()#atualiza
-        new_car=Carro(self.numero_chassi,self.ano,self.modelo,self.marca,self.problemas)
-        carModel.update(new_car)
+    
 
 class CarrosModel:
     FILE_PATH = os.path.join(DATA_DIR, 'carros.json')
