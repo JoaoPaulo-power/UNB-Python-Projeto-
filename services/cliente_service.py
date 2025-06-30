@@ -78,3 +78,21 @@ class ClienteService:
         self.cliente_model.update(cliente)
         print('pedido cadastrado')
 
+    def pagar_pedido(self,id_cliente,id_pedido):
+        cliente= self.cliente_model.get_by_id(id_cliente)
+        if id_pedido in cliente.lista_pedidos:
+            from models.problema import Problema
+            pedido= PedidosModel().get_by_id(id_pedido)
+            carro_dict=pedido.carro
+            carro_obj=Carro.from_dict(carro_dict)
+            list_problemas=carro_obj.problemas
+            global valor_toal
+            for problema in list_problemas:
+                problema_obj=Problema.from_dict(problema)
+                valor=problema_obj.preco
+                valor_total=+valor
+    
+            nome=cliente.name    
+            print(f'o cliente: {nome}, pagou {valor_total} reais')
+        else:
+            print('esse cliente n tem um pedido com esse id')

@@ -161,8 +161,16 @@ class FuncionarioService:
         else:
             print( 'este funcionario não tem esse pedido')
         
-        
-        
+    
+    def receber_salario(self,id_funcionario):
+        funcionario=self.funcionario_model.get_by_id(id_funcionario)
+        salario=funcionario.salario
+        name= funcionario.name
+        print(f'o funcionario:{name} recebeu um salario de {salario} reais')
+        new_salario = (salario/100)*105
+        funcionario.salario=new_salario
+        self.funcionario_model.update(funcionario)
+
         
         
         

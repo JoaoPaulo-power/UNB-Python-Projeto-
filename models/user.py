@@ -6,7 +6,7 @@ from typing import List
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
 class User:
-    def __init__(self, id, name, email, birthdate,senha):
+    def __init__(self, id, name='', email='', birthdate='',senha=''):
         self.id = id
         self.name = name
         self.email = email
