@@ -139,13 +139,30 @@ class FuncionarioService:
             ganha_pão=(problema_obj.preco/100)*25
             comissao=+ganha_pão
         funcionario.salario=funcionario.salario+comissao#aumentando o salario do cara
-
         porblemas_do_carro.clear()
-        
         pedido.status='closed'
-
-            
         CarrosModel().update(carro)
         print('carro concertado')
-        print(funcionario.salario)
+        
             
+    def entregar_pedido(self,id_pedido,id_funcionario):
+        funcionario = self.funcionario_model.get_by_id(id_funcionario)
+        list_ped=funcionario.lista_pedidos
+        if id_pedido in list_ped:
+            pedido = PedidosModel().get_by_id(id_pedido)
+            
+            pedido.status='closed'
+            for ped_id in list_ped: 
+                if ped_id == id_pedido:
+                    list_ped.remove(ped_id)
+                    break
+            PedidosModel().update(pedido)
+            self.funcionario_model.update(funcionario)
+        else:
+            print( 'este funcionario não tem esse pedido')
+        
+        
+        
+        
+        
+        
