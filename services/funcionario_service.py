@@ -1,8 +1,13 @@
 from bottle import request
 from models.funcionario import Funcionario, FuncionarioModel
-from services.vistoria_service import VistoriasModel,VistoriaService,Vistoria
 from models.problema import Problema,ProblemaModel 
+from models.pedidos import Pedido,PedidosModel
+
 from services.carro_service import Carro,CarrosModel,CarroService
+from services.vistoria_service import VistoriasModel,VistoriaService,Vistoria
+
+
+
 class FuncionarioService:
     def __init__(self):
         self.funcionario_model= FuncionarioModel()
@@ -57,7 +62,7 @@ class FuncionarioService:
 
         
         list_func= vistoria.funcionarios#editando
-        list_func.append(func.id)#editando
+        list_func.append(func.id)#adicionando id de funcionario na vistoria
         vistoria.prazo=prazo
         vist_model.update(vistoria)#salvando
         
@@ -102,6 +107,20 @@ class FuncionarioService:
         vist_model.update(vistoria)
         print('vistoria entregue')
 
+    def pegar_pedido(self,func_id,ped_id,prazo):
+        funcionario=self.funcionario_model.get_by_id(func_id)
+        pedido=PedidosModel().get_by_id(ped_id)
 
+        funcionario.lista_pedidos.append(pedido.id)#adicionando id de pedido a lista do meu func
+        self.funcionario_model.update(funcionario)#atualizando funcionario
 
+        pedido.funcionarios.append(funcionario.id)#adicionando id de funcionario no meu pedido
+        pedido.prazo=prazo
+        PedidosModel().update(pedido)#atualizando
+        print('pedido pego')
 
+    def lancar_progresso(self,ped_id,progresso):
+        pedido=PedidosModel().get_by_id(ped_id)
+        pedido.progresso=progresso
+        PedidosModel().update(pedido)
+        print('progresso lançado')

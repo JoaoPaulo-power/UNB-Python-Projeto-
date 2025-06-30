@@ -14,9 +14,11 @@
                 }
             ]
         },
-        "funcionario": [],
-        "prazo": "",
+        "funcionario": [
+            2
+        ],
+        "prazo": "50%",
         "status": "open",
-        "progresso": ""
+        "progresso": "75%"
     }
 ]

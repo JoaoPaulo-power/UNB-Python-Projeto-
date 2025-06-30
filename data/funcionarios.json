@@ -6,7 +6,9 @@
         "salario": "teste",
         "name": "teste",
         "email": "teste",
-        "lista_pedidos": [],
+        "lista_pedidos": [
+            1
+        ],
         "lista_vistorias": []
     }
 ]
