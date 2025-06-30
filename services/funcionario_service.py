@@ -124,3 +124,28 @@ class FuncionarioService:
         pedido.progresso=progresso
         PedidosModel().update(pedido)
         print('progresso lançado')
+
+
+    def consertar_carro(self,id_pedido,id_func):
+        funcionario=self.funcionario_model.get_by_id(id_func)
+        pedido=PedidosModel().get_by_id(id_pedido)
+        carro_dict=pedido.carro
+        carro=Carro.from_dict(carro_dict)
+
+        porblemas_do_carro=carro.problemas
+        global comissao
+        for problema_dict in porblemas_do_carro:
+            problema_obj=Problema.from_dict(problema_dict)
+            ganha_pão=(problema_obj.preco/100)*25
+            comissao=+ganha_pão
+        funcionario.salario=funcionario.salario+comissao#aumentando o salario do cara
+
+        porblemas_do_carro.clear()
+        
+        pedido.status='closed'
+
+            
+        CarrosModel().update(carro)
+        print('carro concertado')
+        print(funcionario.salario)
+            

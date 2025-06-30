@@ -9,7 +9,7 @@ from models.carro import Carro,CarrosModel
 from models.problema import ProblemaModel,Problema
 
 class Funcionario(User):
-    def __init__(self, id, birthdate, senha,salario, name='', email='', lista_pedidos=[], lista_vistorias=[]):
+    def __init__(self, id, birthdate, senha,salario=0, name='', email='', lista_pedidos=[], lista_vistorias=[]):
         super().__init__(id, name, email, birthdate, senha)
         self.lista_pedidos=lista_pedidos if lista_pedidos is not None else []
         self.lista_vistorias=lista_vistorias if lista_vistorias is not None else []

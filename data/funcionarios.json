@@ -3,7 +3,7 @@
         "id": 2,
         "birthdate": "teste",
         "senha": "teste",
-        "salario": "teste",
+        "salario": 100,
         "name": "teste",
         "email": "teste",
         "lista_pedidos": [

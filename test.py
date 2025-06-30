@@ -22,6 +22,6 @@ vistoria=Vist_service.get_by_id(1)
 problema=ProblemaModel().get_by_id(1)
 pedido=PedidosModel().get_by_id(1)
 
-func_service.lancar_progresso(pedido.id,'75%')
-
+func_service.consertar_carro(pedido.id,funcionario.id)
+ 
 
