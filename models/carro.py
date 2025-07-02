@@ -3,12 +3,12 @@ from models.user import DATA_DIR
 
 
 class Carro:
-    def __init__(self,numero_chassi,ano,modelo='',marca='',problemas=None):
+    def __init__(self,numero_chassi,ano,modelo='',marca='',problemas_id=None):
         self.numero_chassi=numero_chassi
         self.ano=ano
         self.modelo=modelo
         self.marca= marca
-        self.problemas=problemas if problemas is not None else []
+        self.problemas_id=problemas_id if problemas_id is not None else []
     
     def to_dict(self):
         return{
@@ -16,7 +16,7 @@ class Carro:
             'ano':self.ano,
             'modelo': self.modelo,
             'marca': self.marca,
-            'lista de problemas': self.problemas
+            'lista de problemas_id': self.problemas_id
         }
         
     @classmethod
@@ -26,7 +26,7 @@ class Carro:
             ano=data['ano'],
             modelo=data['modelo'],
             marca=data['marca'],
-            problemas=data['lista de problemas']
+            problemas_id=data['lista de problemas_id']
         )
     
     

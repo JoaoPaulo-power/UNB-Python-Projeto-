@@ -43,52 +43,53 @@ class ClienteService:
     def delete(self,cliente_id):
         self.cliente_model.delete(cliente_id)
     
-    def cad_carro(self,cliente_id,numero_chassi,ano,modelo='',marca='',problemas=None):
-        """ cadastra carro em carro.json, e atualiza o cliente com o carro na lista de carros dele """
+    def cad_carro(self,cliente_id,numero_chassi,ano,modelo='',marca='',problemas_id=None):
+        """ cadastra carro em carro.json, e atualiza o cliente com o chassi do carro na lista do cliente"""
         car_model=CarrosModel()
         cliente_model=ClienteModel()
-        carro=Carro(numero_chassi,ano,modelo,marca,problemas)
+        carro=Carro(numero_chassi,ano,modelo,marca,problemas_id)
         car_model.add(carro)#adicionando carro 
         
         cliente=self.get_by_id(cliente_id)
-        cliente.lista_carros.append(carro)#adicionando ao cliente
+        cliente.lista_carros_id.append(carro.numero_chassi)#adicionando ao cliente
         cliente_model.update(cliente)
         
         
-    def cad_vist(self,cliente_id,id,carro,status,funcionarios=None,prazo=''):
+    def cad_vist(self,cliente_id,id_vist,carro_id,status,funcionarios=None,prazo=''):
         """ cadastra vist, salva em vistorias.json,e atualiza o cliente com  a vistoria em sua lisa_pedidos """
 
         vist_model=VistoriasModel()
         cliente_model=ClienteModel()
-        vistoria=Vistoria(id,carro,status,funcionarios,prazo)
+        vistoria=Vistoria(id_vist,carro_id,status,funcionarios,prazo)
         vist_model.add(vistoria)# adicionando vistoria
 
+
         cliente=self.cliente_model.get_by_id(cliente_id)
-        cliente.lista_vistorias.append(id)#altera lista
+        cliente.lista_vistorias_id.append(vistoria.id)#altera lista
         cliente_model.update(cliente)#atualiza   
 
 
-    def cad_pedido(self,id_cliente,id_ped,carro,status):
-        """ cadastra pedido, salva em pedidos.json,e atualiza o cliente com  pedido em sua lisa_pedidos """
-        pedido=Pedido(id_ped,carro,status)
+    def cad_pedido(self,id_cliente,id_ped,carro_id,status):
+        """ cadastra pedido, salva em pedidos.json,e atualiza o cliente com o pedido_id em sua lisa_pedidos """
+        pedido=Pedido(id_ped,carro_id,status)
         PedidosModel().add(pedido)#adicionando pedido ao json
 
         cliente=self.cliente_model.get_by_id(id_cliente)
-        cliente.lista_pedidos.append(id_ped)
+        cliente.lista_pedidos_id.append(id_ped)
         self.cliente_model.update(cliente)
         print('pedido cadastrado')
 
     def pagar_pedido(self,id_cliente,id_pedido):
+        
         cliente= self.cliente_model.get_by_id(id_cliente)
-        if id_pedido in cliente.lista_pedidos:
-            from models.problema import Problema
+        if id_pedido in cliente.lista_pedidos_id:
+            from models.problema import ProblemaModel
             pedido= PedidosModel().get_by_id(id_pedido)
-            carro_dict=pedido.carro
-            carro_obj=Carro.from_dict(carro_dict)
-            list_problemas=carro_obj.problemas
-            global valor_toal
-            for problema in list_problemas:
-                problema_obj=Problema.from_dict(problema)
+            carro_obj=CarrosModel().get_by_chassi(pedido.carro_id)
+            list_problemas_id=carro_obj.problemas_id
+            global valor_total
+            for problema_id in list_problemas_id:
+                problema_obj=ProblemaModel().get_by_id(problema_id)
                 valor=problema_obj.preco
                 valor_total=+valor
     

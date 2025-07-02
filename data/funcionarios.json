@@ -1,12 +1,12 @@
 [
     {
-        "id": 2,
-        "birthdate": "teste",
-        "senha": "teste",
-        "salario": 247.49144992992476,
-        "name": "teste",
-        "email": "teste",
-        "lista_pedidos": [],
-        "lista_vistorias": []
+        "id": 1,
+        "birthdate": "teste gabriel",
+        "senha": "teste gabriel",
+        "salario": 265.32977051444203,
+        "name": "teste gabriel",
+        "email": "teste gabriel",
+        "lista_pedidos_id": [],
+        "lista_vistorias_id": []
     }
 ]

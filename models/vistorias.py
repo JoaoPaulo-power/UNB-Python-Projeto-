@@ -5,18 +5,18 @@ from models.problema import Problema
 
 
 class Vistoria:
-    def __init__(self,id,carro,status,funcionarios=None,prazo=''):
+    def __init__(self,id,carro_id,status,funcionarios_id=None,prazo=''):
         self.id=id
-        self.carro=carro# aqui eu to passando  objeto 
-        self.funcionarios=funcionarios if funcionarios is not None else []
+        self.carro_id=carro_id# aqui eu to passando  objeto 
+        self.funcionarios_id=funcionarios_id if funcionarios_id is not None else []
         self.prazo=prazo
         self.status=status
         
     def to_dict(self):
         return{
             'id':self.id,
-            'carro':self.carro.to_dict() if isinstance(self.carro, Carro) else self.carro,
-            'funcionarios':self.funcionarios,
+            'carro_id':self.carro_id.to_dict() if isinstance(self.carro_id, Carro) else self.carro_id,
+            'funcionarios_id':self.funcionarios_id,
             'prazo': self.prazo,
             'status':self.status
         }
@@ -25,8 +25,8 @@ class Vistoria:
     def from_dict(cls,data):
         return cls(
             id=data['id'],
-            carro=data['carro'],
-            funcionarios=data['funcionarios'],
+            carro_id=data['carro_id'],
+            funcionarios_id=data['funcionarios_id'],
             prazo=data['prazo'],
             status=data['status']
             

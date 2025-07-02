@@ -3,15 +3,15 @@ from models.user import DATA_DIR
 from models.vistorias import Vistoria
 
 class Pedido(Vistoria):
-    def __init__(self, id, carro, status,  funcionarios=None,prazo='',progresso=''):
-        super().__init__(id, carro, status, funcionarios, prazo)
+    def __init__(self, id, carro_id, status, funcionarios_id=None, prazo='',progresso=''):
+        super().__init__(id, carro_id, status, funcionarios_id, prazo)
         self.progresso=progresso
         
     def to_dict(self):
         return {
             'id':self.id,
-            'carro':self.carro,
-            'funcionario':self.funcionarios,
+            'carro_id':self.carro_id,
+            'funcionarios_id':self.funcionarios_id,
             'prazo':self.prazo,
             'status':self.status,
             'progresso': self.progresso
@@ -21,8 +21,8 @@ class Pedido(Vistoria):
     def from_dict(cls, data):
         return cls(
             id=data['id'],
-            carro=data['carro'],
-            funcionarios=data['funcionario'],
+            carro_id=data['carro_id'],
+            funcionarios_id=data['funcionarios_id'],
             prazo=data['prazo'],
             status=data['status'],
             progresso=data['progresso']    

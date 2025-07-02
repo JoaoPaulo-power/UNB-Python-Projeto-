@@ -1,9 +1,9 @@
 [
     {
-        "numero de chassi": 12,
-        "ano": ".",
-        "modelo": ".",
-        "marca": ".",
-        "lista de problemas": []
+        "numero de chassi": 123,
+        "ano": "teste",
+        "modelo": "teste",
+        "marca": "teste",
+        "lista de problemas_id": []
     }
 ]

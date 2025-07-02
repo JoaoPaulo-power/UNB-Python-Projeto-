@@ -21,8 +21,8 @@ class PedidoService:
         pedido=Pedido(new_id,carro_chassi,status,funcionarios,prazo,progresso)
         self.pedido_model.add(pedido)
         
-    def get_by_chassi(self,id_pedido):# retorna um exclusivo
-        return self.pedido_model.get_by_chassi(id_pedido)
+    def get_by_id(self,id_pedido):# retorna um exclusivo
+        return self.pedido_model.get_by_id(id_pedido)
 
     def edit_pedido(self,pedido_obj):# editando um funcionario e as sub
         

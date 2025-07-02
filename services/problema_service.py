@@ -28,7 +28,7 @@ class ProblemaService:
         self.problema_model.update(problema_obj)
         
     def get_by_id(self,id_problema):# retorna um exclusivo
-        return self.problema_model.get_by_chassi(id_problema)
+        return self.problema_model.get_by_id(id_problema)
 
     def delete_problema(self,id_problema):
         self.problema_model.delete(id_problema)

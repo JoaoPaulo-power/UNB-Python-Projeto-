@@ -2,11 +2,11 @@ import os
 from models.user import User, DATA_DIR
  
 class Cliente(User):
-    def __init__(self, id, name, email, birthdate, senha,lista_carros=None,lista_pedidos=None,lista_vistorias=None):
+    def __init__(self, id, name='', email='', birthdate='', senha='',lista_carros_id=None,lista_pedidos_id=None,lista_vistorias_id=None):
         super().__init__(id, name, email, birthdate, senha)
-        self.lista_carros= lista_carros if lista_carros is not None else []
-        self.lista_pedidos=lista_pedidos if lista_pedidos is not None else []
-        self.lista_vistorias=lista_vistorias if lista_vistorias is not None else []
+        self.lista_carros_id= lista_carros_id if lista_carros_id is not None else []
+        self.lista_pedidos_id=lista_pedidos_id if lista_pedidos_id is not None else []
+        self.lista_vistorias_id=lista_vistorias_id if lista_vistorias_id is not None else []
     
     def to_dict(self):
         return {
@@ -15,9 +15,9 @@ class Cliente(User):
             'email': self.email,
             'birthdate': self.birthdate,
             'senha':self.senha,
-            'lista de pedidos':[pedido.to_dict() if hasattr(pedido, 'to_dict') else pedido for pedido in self.lista_pedidos],
-            'lista de vistorias': [vistorias.to_dict() if hasattr(vistorias, 'to_dict') else vistorias for vistorias in self.lista_vistorias],
-            'lista de carros': [carro.to_dict() if hasattr(carro, 'to_dict') else carro for carro in self.lista_carros]
+            'lista de pedidos_id':[pedido.to_dict() if hasattr(pedido, 'to_dict') else pedido for pedido in self.lista_pedidos_id],
+            'lista de vistorias_id': [vistorias.to_dict() if hasattr(vistorias, 'to_dict') else vistorias for vistorias in self.lista_vistorias_id],
+            'lista de carros_id': [carro.to_dict() if hasattr(carro, 'to_dict') else carro for carro in self.lista_carros_id]
         }
     
     @classmethod
@@ -28,9 +28,9 @@ class Cliente(User):
             email=data['email'],
             birthdate=data['birthdate'],
             senha=data['senha'],
-            lista_pedidos=data['lista de pedidos'],
-            lista_vistorias=data['lista de vistorias'],
-            lista_carros=data['lista de carros']
+            lista_pedidos_id=data['lista de pedidos_id'],
+            lista_vistorias_id=data['lista de vistorias_id'],
+            lista_carros_id=data['lista de carros_id']
         )    
         
         

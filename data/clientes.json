@@ -1,36 +1,18 @@
 [
     {
         "id": 1,
-        "name": "gabriel",
-        "email": ",",
-        "birthdate": ",",
-        "senha": ",",
-        "lista de pedidos": [
+        "name": "gabriel cliente",
+        "email": "gabriel teste",
+        "birthdate": "gabriel teste",
+        "senha": "gabriel teste",
+        "lista de pedidos_id": [
             1
         ],
-        "lista de vistorias": [
-            {
-                "id": 1,
-                "carro": {
-                    "numero de chassi": 12,
-                    "ano": ".",
-                    "modelo": ".",
-                    "marca": ".",
-                    "lista de problemas": []
-                },
-                "funcionarios": [],
-                "prazo": "",
-                "status": "open"
-            }
+        "lista de vistorias_id": [
+            1
         ],
-        "lista de carros": [
-            {
-                "numero de chassi": 12,
-                "ano": ".",
-                "modelo": ".",
-                "marca": ".",
-                "lista de problemas": []
-            }
+        "lista de carros_id": [
+            123
         ]
     }
 ]
