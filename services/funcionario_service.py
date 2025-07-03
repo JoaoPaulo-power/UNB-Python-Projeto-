@@ -49,76 +49,76 @@ class FuncionarioService:
         self.funcionario_model.delete(funcionario_id)
             
         
-    def pegar_vist(self,func_id=0,vistoria_adicionada_id=0,prazo=''):
+    def pegar_vist(self,func_id=0):#,vistoria_adicionada_id=0,prazo=''
+
+        vistoria_adicionada_id=request.forms.get('vvistoria_adiciconada_id')
+        prazo=request.forms.get('prazo')
+
         vist_model=VistoriasModel()
         vist_service=VistoriaService()
         func_model= self.funcionario_model
-        
+
         vistoria=vist_service.get_by_id(vistoria_adicionada_id)
         func=self.get_by_id(func_id)
-        
         func.lista_vistorias_id.append(vistoria.id)#adicinando a vist no meu func 
         func_model.update(func)#atualizando
-
-
-        
         list_func= vistoria.funcionarios_id#editando
         list_func.append(func.id)#adicionando id de funcionario na vistoria
         vistoria.prazo=prazo
         vist_model.update(vistoria)#salvando
-        
         print('vistoria pega')
 
-    def cad_problema(self,id=0,preco=0,peca=''):
+    def cad_problema(self,):#id=0,preco=0,peca=''
+        """ cadastro de um problema """
+        id=request.forms.get('id')
+        preco=request.forms.get('preco')
+        peca=request.forms.get('peca')
         prob=Problema(id,peca,preco)
         ProblemaModel().add(prob)#salvando problema
         print('problema cadastrado')
 
-    def add_prob(self,id_vist=0,id_prob=0):# secundario
-        
+    def add_prob(self,id_vist=0,id_prob=0):# secundario\\\\
+        """ adiciona probelam no carro da vistoria 
+        será se eu preciso colcoar o request aqui"""
         vist=VistoriasModel().get_by_id(id_vist)
         vist_carro_chassi=vist.carro_id
         vist_carro_obj= CarrosModel().get_by_chassi(vist_carro_chassi)
-        
         problema=ProblemaModel().get_by_id(id_prob)
-            
         vist_carro_obj.problemas_id.append(problema.id)#adicionando problema_dict a carro
         CarrosModel().update(vist_carro_obj)#atualizando carro
 
         VistoriasModel().update(vist)#atualizando vistoria
         print('problema adicionado')
-        
 
-    def entregar_vist(self,id_func=0,id_vist=0,id_prob=0):
+    def entregar_vist(self,id_func=0):#,id_vist=0,id_prob=0
+        """ acidiona problema ao carro da vistoria,salva, e atualiza as respectivsa listas """
+        id_vist=request.forms.get('id_vist')
+        id_prob=request.forms.get('is_prob')
+
         vist_service=VistoriaService()
         vist_model=VistoriasModel()
         func_model=FuncionarioModel()
         funcionario=self.get_by_id(id_func)
         if id_vist in funcionario.lista_vistorias_id :
-            self.add_prob(id_vist,id_prob)
+            self.add_prob(id_vist,id_prob)#
             vistoria=vist_service.get_by_id(id_vist)
             vistoria.status='closed'
-            
             vist_list_id=funcionario.lista_vistorias_id
             for vist_id in vist_list_id:
                 if vist_id == id_vist:
                     vist_list_id.remove(vist_id)# removendo vist da lista
                     break
-            
         else:
             return print('Este funcionario nao tem o id desta vistoria')
-        
-
-        
-        
-        
         func_model.update(funcionario)
         vist_model.update(vistoria)
         print('vistoria entregue')
 
-        
+    def pegar_pedido(self,func_id=0):#,ped_id=0,prazo=''
+        """ adiciono pedido nas listas respectivas listas """
 
-    def pegar_pedido(self,func_id=0,ped_id=0,prazo=''):
+        ped_id=request.forms.get('ped_id')
+        prazo=request.forms.get('prazo')
         funcionario=self.funcionario_model.get_by_id(func_id)
         pedido=PedidosModel().get_by_id(ped_id)
 
@@ -130,19 +130,22 @@ class FuncionarioService:
         PedidosModel().update(pedido)#atualizando
         print('pedido pego')
 
-    def lancar_progresso(self,ped_id=0,progresso=''):
+    def lancar_progresso(self,ped_id=0):#,progresso=''
+        """lançar o progresso do atendimento do pedido"""
+        progresso=request.forms.get('progresso')
         pedido=PedidosModel().get_by_id(ped_id)
         pedido.progresso=progresso
         PedidosModel().update(pedido)
         print('progresso lançado')
 
 
-    def consertar_carro(self,id_pedido=0,id_func=0):
+    def consertar_carro(self,id_func=0):#id_pedido=0,
+        """tiro problemas do carro e dou a comissao do funcionario"""
+        id_pedido=request.forms.get('id_pedido')
         funcionario=self.funcionario_model.get_by_id(id_func)
         if id_pedido in funcionario.lista_pedidos_id:
             pedido=PedidosModel().get_by_id(id_pedido)
             carro_obj=CarrosModel().get_by_chassi(pedido.carro_id)
-            
             problema_carro=carro_obj.problemas_id
             global comissao
             for problema_id in problema_carro:
@@ -155,15 +158,14 @@ class FuncionarioService:
             CarrosModel().update(carro_obj)
             print('carro concertado')
         else:return print('esse pedido não esta cadastrado para esse funcionário')
-        
-        
             
-    def entregar_pedido(self,id_pedido=0,id_funcionario=0):
+    def entregar_pedido(self,id_funcionario=0):#,id_pedido=0
+        """tiro o pedido da lista do funcioanrio e dou ele como clcosed"""
+        id_pedido=request.forms.get('id_pedido')
         funcionario = self.funcionario_model.get_by_id(id_funcionario)
         list_ped=funcionario.lista_pedidos_id
         if id_pedido in list_ped:
             pedido = PedidosModel().get_by_id(id_pedido)
-            
             pedido.status='closed'
             for ped_id in list_ped: 
                 if ped_id == id_pedido:
@@ -174,9 +176,9 @@ class FuncionarioService:
             print('pedido entregue')
         else:
             print( 'este funcionario não tem esse pedido')
-        
-    
+
     def receber_salario(self,id_funcionario=0):
+        """funcionario vai receber o dinheiro e vai aumentar o salário dele"""
         funcionario=self.funcionario_model.get_by_id(id_funcionario)
         salario=funcionario.salario
         name= funcionario.name
@@ -184,7 +186,3 @@ class FuncionarioService:
         new_salario = (salario/100)*105
         funcionario.salario=new_salario
         self.funcionario_model.update(funcionario)
-
-        
-        
-        
