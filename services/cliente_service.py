@@ -115,3 +115,27 @@ class ClienteService:
             print(f'o cliente: {nome}, pagou {valor_total} reais')
         else:
             print('esse cliente n tem um pedido com esse id')
+
+    def listar_carros(self,id_cliente):
+        cliente= self.cliente_model.get_by_id(id_cliente)
+        lista_carros=[] #salvo o objeto ou o dict?
+        for carr_id in cliente.lista_carros_id:
+            carro=CarrosModel().get_by_chassi(carr_id)# salvando o objeto
+            lista_carros.append(carro)
+        return lista_carros
+    
+    def listar_vistorias(self,id_cliente):
+        cliente= self.cliente_model.get_by_id(id_cliente)
+        lista_vistorias=[]
+        for id_vist in cliente.lista_vistorias_id:
+            vistoria=VistoriasModel().get_by_id(id_vist)
+            lista_vistorias.append(vistoria)
+        return lista_vistorias
+    
+    def listar_pedido(self,id_cliente):
+        cliente= self.cliente_model.get_by_id(id_cliente)
+        lista_pedidos=[]
+        for id_ped in cliente.lista_pedidos_id:
+            pedido=PedidosModel().get_by_id(id_ped)
+            lista_pedidos.append(pedido)
+        return lista_pedidos

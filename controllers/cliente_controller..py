@@ -41,13 +41,40 @@ class ClienteController(BaseController):
         self.redirect('/clientes')
 
     def cad_carro(self,cliente_id):
-        ...
+        cliente=self.cliente_service.get_by_id(cliente_id)
+        self.cliente_service.cad_carro(cliente_id)
+        self.render('carro_form',cliente=cliente,action=f'/clientes/cad_carro/{cliente_id}')
+        self.redirect('/clientes/carros')
     
-    def cad_vistoria(self):
+    def cad_vistoria(self,cliente_id):
+        self.cliente_service.cad_vist(cliente_id)
+        cliente=self.cliente_service.get_by_id(cliente_id)
+        self.render('vistoria_form',cliente=cliente,action=f'/clientes/cad_vist/{cliente_id}')
+        self.redirect('/clientes/vistorias/')
+        
+    def cad_pedido(self,id_cliente):
+        cliente=self.cliente_service.get_by_id(id_cliente)
+        self.cliente_service.cad_pedido(id_cliente)
+        self.render('pedido_form',cliente=cliente,action=f'/clientes/cad_pedido/{id_cliente}')
+        self.redirect('/clientes/pedidos')
+
+    def pagar_pedido(self,cliente_id):
+        self.cliente_service.pagar_pedido(cliente_id)
+        self.cliente_service.cad_pedido(cliente_id)
+        self.redirect('/clientes')
+        
+    def listar_carros(self,id_cliente):#tem como eu interpretar essa lista aqui ??
+        cliente=self.cliente_service.get_by_id(id_cliente)
+        lista_carros=self.cliente_service.listar_carros(id_cliente)#retorna uma lista com todos carros em forma de objeto
+        self.render('vistorias',cliente=cliente,action=f'/clientes/vistorias/{id_cliente}')
+
+    def listar_vistorias(self,id_cliente):
+
         ...
-    def cad_pedido(self):
+    def listar_pedidos(self,id_cliente):
         ...
-    def pagar_pedido(self):
-        ...
+
+    
+    """metodo pra mostras os carros, pedidos e vistorias"""
 cliente_routes = Bottle()
 cliente_controllers= ClienteController(cliente_routes)
