@@ -7,11 +7,13 @@ from models.pedidos import Pedido, PedidosModel
 
 
 class ClienteService:
+    """ghj"""
     def __init__(self):
         self.cliente_model= ClienteModel()
         
     def get_all(self):
-        self.cliente_model.get_all()
+        clientes =self.cliente_model.get_all()
+        return clientes
         
     def save(self):# cadastra clientes pelo o html
         last_id= max([u.id for u in self.cliente_model.get_all()],default=0)

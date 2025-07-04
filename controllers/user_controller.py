@@ -1,3 +1,4 @@
+
 from bottle import Bottle, request
 from .base_controller import BaseController
 from services.user_service import UserService
@@ -48,7 +49,18 @@ class UserController(BaseController):
     def delete_user(self, user_id):
         self.user_service.delete_user(user_id)
         self.redirect('/users')
-
+        
+    def pegar_vistoria(self):
+        ...
+    def cad_problema(self):
+        ...
+    def entregar_vistoria(self):
+        ...
+    def pegar_pedido(self):
+        ...
+    def lacar_progresso(self):
+        ...
+    
 
 user_routes = Bottle()
 user_controller = UserController(user_routes)

@@ -13,7 +13,8 @@ class FuncionarioService:
         self.funcionario_model= FuncionarioModel()
 
     def get_all(self):# lista todos os funcs
-        self.funcionario_model.get_all()
+        funcionarios=self.funcionario_model.get_all()
+        return funcionarios
     
     def save(self):# cadastrar func pelo o html 
         last_id = max([u.id for u  in self.funcionario_model.get_all()], default=0)
