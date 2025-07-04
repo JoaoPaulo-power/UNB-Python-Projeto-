@@ -1,6 +1,7 @@
 from bottle import Bottle, request
 from .base_controller import BaseController
 from services.user_service import UserService
+from middleware.auth_middleware import require_auth
 
 class UserController(BaseController):
     def __init__(self, app):
@@ -52,3 +53,8 @@ class UserController(BaseController):
 
 user_routes = Bottle()
 user_controller = UserController(user_routes)
+
+@require_auth
+def list_users(self):
+     users = self.user_service.get_all()
+     return self.render('users', users=users, current_user=request.current_user)
