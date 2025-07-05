@@ -187,3 +187,25 @@ class FuncionarioService:
         new_salario = (salario/100)*105
         funcionario.salario=new_salario
         self.funcionario_model.update(funcionario)
+
+    def listar_vistorias(self,id_funcionario):
+        funcionario=self.get_by_id(id_funcionario)
+        lista_vistorias=[]
+        for id_vist in funcionario.lista_vistorias_id:
+            vistoria=VistoriasModel().get_by_id(id_vist)
+            lista_vistorias.append(vistoria)
+        return lista_vistorias
+
+    def listar_pedidos(self,id_funcionario):
+        funcionario=self.get_by_id(id_funcionario)
+        lista_pedidos=[]
+        for ped_id in funcionario.lista_pedidos_id:
+            pedido=PedidosModel().get_by_id(ped_id)
+            lista_pedidos.append(pedido)
+        return lista_pedidos
+    
+    def listar_salario(self,id_funcionario):
+        funcionario=self.get_by_id(id_funcionario)
+        return funcionario.salario
+
+        

@@ -4,6 +4,14 @@
         "ano": "teste",
         "modelo": "teste",
         "marca": "teste",
-        "lista de problemas_id": []
+        "lista de problemas_id": [123]
+    },
+    {
+        "numero de chassi": 125,
+        "ano": "teste",
+        "modelo": "teste",
+        "marca": "teste",
+        "lista de problemas_id": [123]
     }
 ]
+    

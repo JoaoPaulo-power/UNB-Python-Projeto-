@@ -32,7 +32,8 @@ class BaseController:
     def render(self, template, **context):
         """Método auxiliar para renderizar templates"""
         from bottle import template as render_template
-        return render_template(template, **context)
+        return render_template(template, **context)#template-> o nome do arquivo tpl que eu quero renderizr 
+        # **context -> action , obj -> são variáveis que o template pode usar para montar o HTML.
 
 
     def redirect(self, path, code=302):

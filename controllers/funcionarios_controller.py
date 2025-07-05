@@ -21,7 +21,7 @@ class FuncionarioController(BaseController):
     
     def add_funcionario(self):
         if request.method== 'GET':
-            return self.render('funcionarios_form',funcionarios=None, action= 'funcionarios/add')
+            return self.render('funcionarios_form',funcionarios=None, action= '/funcionarios/add')
         else: #-> POST
             self.func_service.save()
             self.redirect('/funcionarios')
@@ -39,7 +39,23 @@ class FuncionarioController(BaseController):
     def delete_funcionario(self,funcionario_id):
         self.func_service.delete_funcionario(funcionario_id)
         self.redirect('/funcionario')
-        
+
+    def pegar_vistoria(self):
+        ...
+    def cad_problema(self):
+        ...
+    def entregar_vistoria(self):
+        ...
+    def pegar_pedido(self):
+        ...
+    def lacar_progresso(self):
+        ...
+    def listar_pedidos(self):
+        ...
+    def listar_vistorias(self):
+        ...
+    def listar_salario(self):
+        ...
         
         
 func_routes= Bottle()

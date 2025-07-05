@@ -7,7 +7,7 @@ from models.pedidos import Pedido, PedidosModel
 
 
 class ClienteService:
-    """ghj"""
+    
     def __init__(self):
         self.cliente_model= ClienteModel()
         
@@ -52,13 +52,14 @@ class ClienteService:
         modelo=request.forms.get('modelo')
         marca=request.forms.get('marca')
         problemas_id=request.forms.get('probelmas_id')
+        
         car_model=CarrosModel()
         cliente_model=ClienteModel()
         carro=Carro(numero_chassi,ano,modelo,marca,problemas_id)
-        car_model.add(carro)#adicionando carro 
+        car_model.add(carro)#adicionando carro no json
         
         cliente=self.get_by_id(cliente_id)
-        cliente.lista_carros_id.append(carro.numero_chassi)#adicionando ao cliente
+        cliente.lista_carros_id.append(carro.numero_chassi)#adicionando carro ao cliente
         cliente_model.update(cliente)
         
         
@@ -119,8 +120,8 @@ class ClienteService:
     def listar_carros(self,id_cliente):
         cliente= self.cliente_model.get_by_id(id_cliente)
         lista_carros=[] #salvo o objeto ou o dict?
-        for carr_id in cliente.lista_carros_id:
-            carro=CarrosModel().get_by_chassi(carr_id)# salvando o objeto
+        for carro_id in cliente.lista_carros_id:
+            carro=CarrosModel().get_by_chassi(carro_id)# salvando o objeto
             lista_carros.append(carro)
         return lista_carros
     

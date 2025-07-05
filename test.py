@@ -18,13 +18,6 @@ Vist_service=VistoriaService()
 prob_service=ProblemaService()
 ped_service=PedidoService()
 
-cliente= cliente_service.get_by_id(1)
-funcionario=func_service.get_by_id(1)
-carro= car_service.get_by_chassi(123)
-vistoria=Vist_service.get_by_id(1)
-problema=prob_service.get_by_id(1)
-pedido=ped_service.get_by_id(1)
 
-func_service.receber_salario(funcionario.id)
-
-
+cliente=cliente_service.get_by_id(1)
+print(cliente_service.listar_carros(cliente.id))

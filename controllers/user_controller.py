@@ -27,6 +27,7 @@ class UserController(BaseController):
     def add_user(self):
         if request.method == 'GET':
             return self.render('user_form', user=None, action="/users/add")
+        #1°'' nome do formulario que vou renderizar
         else:
             # POST - salvar usuário
             self.user_service.save()
@@ -50,16 +51,6 @@ class UserController(BaseController):
         self.user_service.delete_user(user_id)
         self.redirect('/users')
         
-    def pegar_vistoria(self):
-        ...
-    def cad_problema(self):
-        ...
-    def entregar_vistoria(self):
-        ...
-    def pegar_pedido(self):
-        ...
-    def lacar_progresso(self):
-        ...
     
 
 user_routes = Bottle()
