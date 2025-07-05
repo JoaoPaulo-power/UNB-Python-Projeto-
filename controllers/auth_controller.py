@@ -18,12 +18,11 @@ class AuthController(BaseController):
     def login(self):
         """Página e processo de login"""
         if request.method == 'GET':
-            # Se já está logado, redireciona para dashboard
             if self.auth_service.is_logged_in():
                 return self.redirect('/dashboard')
             return self.render('login', error=None)
         
-        else:  # POST
+        else: 
             username = request.forms.get('username')
             password = request.forms.get('password')
             
@@ -43,7 +42,7 @@ class AuthController(BaseController):
         if request.method == 'GET':
             return self.render('register', error=None, success=None)
         
-        else:  # POST
+        else: 
             username = request.forms.get('username')
             email = request.forms.get('email')
             password = request.forms.get('password')
@@ -66,6 +65,6 @@ class AuthController(BaseController):
         
         return self.render('dashboard', user=user)
 
-# Cria instância do controlador
+
 auth_routes = Bottle()
 auth_controller = AuthController(auth_routes)

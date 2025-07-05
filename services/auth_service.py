@@ -11,7 +11,7 @@ class AuthService:
         """Realiza login do usuário"""
         user = self.auth_model.authenticate(username, password)
         if user:
-            # Cria sessão simples usando cookies
+            
             session_token = secrets.token_hex(16)
             response.set_cookie(self.session_key, f"{user.id}:{session_token}", 
                               max_age=3600, httponly=True)  # 1 hora
@@ -39,7 +39,6 @@ class AuthService:
 
     def register_user(self, username, email, password):
         """Registra novo usuário"""
-        # Validações básicas
         if not username or not email or not password:
             return False, "Todos os campos são obrigatórios"
         
@@ -52,7 +51,6 @@ class AuthService:
         if self.auth_model.email_exists(email):
             return False, "Email já está em uso"
         
-        # Cria novo usuário
         last_id = max([u.id for u in self.auth_model.get_all()], default=0)
         new_user = AuthUser(
             id=last_id + 1,

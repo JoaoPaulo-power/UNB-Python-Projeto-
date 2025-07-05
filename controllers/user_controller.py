@@ -51,6 +51,5 @@ class UserController(BaseController):
         self.user_service.delete_user(user_id)
         return self.redirect('/users')
 
-# Criação do controller
 user_routes = Bottle()
 user_controller = UserController(user_routes)
