@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "carro_id": 123,
+        "funcionarios_id": [
+            1
+        ],
+        "prazo": "3 dias",
+        "status": "closed"
+    },
+    {
+        "id": 2,
+        "carro_id": 123,
+        "funcionarios_id": [
+            1
+        ],
+        "prazo": "3 dias",
+        "status": "closed"
+    },
+    {
+        "id": 3,
+        "carro_id": 123,
+        "funcionarios_id": [
+            1
+        ],
+        "prazo": "3 dias",
+        "status": "closed"
+    }
+]

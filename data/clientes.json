@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "gabriel cliente",
+        "email": "gabriel teste",
+        "birthdate": "gabriel teste",
+        "senha": "gabriel teste",
+        "lista de pedidos_id": [
+            1
+        ],
+        "lista de vistorias_id": [
+            1,2,3
+        ],
+        "lista de carros_id": [
+            123,125
+        ]
+    }
+]

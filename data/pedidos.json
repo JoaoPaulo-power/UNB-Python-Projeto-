@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "carro_id": 123,
+        "funcionarios_id": [
+            1
+        ],
+        "prazo": "3 dias",
+        "status": "closed",
+        "progresso": "50%"
+    }
+]

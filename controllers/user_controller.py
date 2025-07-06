@@ -1,3 +1,4 @@
+
 from bottle import Bottle, request
 from .base_controller import BaseController
 from services.user_service import UserService
@@ -30,6 +31,7 @@ class UserController(BaseController):
     def add_user(self):
         if request.method == 'GET':
             return self.render('user_form', user=None, action="/users/add")
+        #1°'' nome do formulario que vou renderizar
         else:
             # POST - salvar usuário
             self.user_service.save()
