@@ -8,7 +8,7 @@ class AuthService:
         self.session_key = 'user_session'
 
     def login(self, username, password):
-        """Realiza login do usuário"""
+        
         user = self.auth_model.authenticate(username, password)
         if user:
             
@@ -19,11 +19,11 @@ class AuthService:
         return None
 
     def logout(self):
-        """Realiza logout do usuário"""
+        
         response.delete_cookie(self.session_key)
 
     def get_current_user(self):
-        """Retorna usuário atual da sessão"""
+        """Sessão"""
         session_cookie = request.get_cookie(self.session_key)
         if session_cookie:
             try:
@@ -34,11 +34,11 @@ class AuthService:
         return None
 
     def is_logged_in(self):
-        """Verifica se há usuário logado"""
+        
         return self.get_current_user() is not None
 
     def register_user(self, username, email, password):
-        """Registra novo usuário"""
+        
         if not username or not email or not password:
             return False, "Todos os campos são obrigatórios"
         
@@ -63,7 +63,7 @@ class AuthService:
         return True, "Usuário registrado com sucesso"
 
     def require_login(self, callback):
-        """Decorator para proteger rotas"""
+        
         def wrapper(*args, **kwargs):
             if not self.is_logged_in():
                 from bottle import redirect

@@ -6,11 +6,12 @@ from datetime import datetime
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
 class AuthUser:
-    def __init__(self, id, username, email, password_hash, created_at=None, is_active=True):
+    def __init__(self, id, username, role, email, password_hash, created_at=None, is_active=True):
         self.id = id
         self.username = username
         self.email = email
         self.password_hash = password_hash
+        self.role = role
         self.created_at = created_at or datetime.now().isoformat()
         self.is_active = is_active
 
@@ -23,6 +24,7 @@ class AuthUser:
             'username': self.username,
             'email': self.email,
             'password_hash': self.password_hash,
+            'role': self.role,
             'created_at': self.created_at,
             'is_active': self.is_active
         }
@@ -34,6 +36,7 @@ class AuthUser:
             username=data['username'],
             email=data['email'],
             password_hash=data['password_hash'],
+            role=data['role'],
             created_at=data.get('created_at'),
             is_active=data.get('is_active', True)
         )
@@ -81,41 +84,42 @@ class AuthUserModel:
             username='admin',
             email='admin@sistema.com',
             password_hash=AuthUser.hash_password('admin123')
+            role = 0
         )
         self.users = [admin_user]
         self._save()
 
     def get_all(self):
-        """Retorna todos os usuários"""
+        
         return self.users
 
     def get_by_id(self, user_id):
-        """Busca usuário por ID"""
+        
         return next((u for u in self.users if u.id == user_id), None)
 
     def get_by_username(self, username):
-        """Busca usuário por username"""
+        
         return next((u for u in self.users if u.username == username), None)
 
     def get_by_email(self, email):
-        """Busca usuário por email"""
+        
         return next((u for u in self.users if u.email == email), None)
 
     def username_exists(self, username):
-        """Verifica se username já existe"""
+        
         return self.get_by_username(username) is not None
 
     def email_exists(self, email):
-        """Verifica se email já existe"""
+        
         return self.get_by_email(email) is not None
 
     def add_user(self, user):
-        """Adiciona novo usuário"""
+        
         self.users.append(user)
         self._save()
 
     def update_user(self, updated_user):
-        """Atualiza usuário existente"""
+        
         for i, user in enumerate(self.users):
             if user.id == updated_user.id:
                 self.users[i] = updated_user
@@ -123,12 +127,12 @@ class AuthUserModel:
                 break
 
     def delete_user(self, user_id):
-        """Remove usuário"""
+        
         self.users = [u for u in self.users if u.id != user_id]
         self._save()
 
     def authenticate(self, username, password):
-        """Autentica usuário"""
+        
         user = self.get_by_username(username)
         if user and user.is_active and user.verify_password(password):
             return user

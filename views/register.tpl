@@ -53,6 +53,13 @@
                 <input type="password" id="confirm_password" name="confirm_password" required 
                        placeholder="Confirme sua senha">
             </div>
+            
+            <div class="dropdown">
+                <select class="form-select" name="role" id = "role">
+                    <option value="1">Funcionário</option>
+                    <option value="2">Cliente</option>
+                </select>
+            </div>
 
             <button type="submit" class="btn btn-primary btn-full">
                 <i class="fas fa-user-plus"></i> Criar Conta
