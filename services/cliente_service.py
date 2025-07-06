@@ -3,6 +3,7 @@ from models.cliente import Cliente, ClienteModel
 from models.carro import Carro, CarrosModel
 from models.vistorias import Vistoria, VistoriasModel
 from models.pedidos import Pedido, PedidosModel
+from models.auth_user import AuthUser,AuthUserModel
 
 
 
@@ -16,12 +17,13 @@ class ClienteService:
         return clientes
         
     def save(self):# cadastra clientes pelo o html
-        last_id= max([u.id for u in self.cliente_model.get_all()],default=0)
+
+        last_id= max([u.id for u in AuthUserModel().get_all()],default=0)
         new_id= last_id+1
         name=request.forms.get('name')
         email=request.forms.get('email')
         birthdate=request.forms.get('birthdate')
-        senha=request.forms.get('senha')
+        senha=request.forms.get('senha') 
         lista_pedidos=request.forms.get('lista_pedidos')
         lista_vistorias=request.forms.get('lista_vistorias')
         lista_carros=request.forms.get('lista_carros')
@@ -140,3 +142,18 @@ class ClienteService:
             pedido=PedidosModel().get_by_id(id_ped)
             lista_pedidos.append(pedido)
         return lista_pedidos
+    
+    def add_cliente(self,id_user):
+        user=AuthUserModel().get_by_id(id_user)
+        print(f'usuario{user}')
+
+        data_nasciment=request.forms.get('data_nascimento')
+        cliente=Cliente('','','','','')
+        cliente.id=user.id
+        cliente.name=user.username
+        cliente.birthdate=data_nasciment
+        cliente.email=user.email
+        cliente.senha=user.password_hash
+        print(f'{cliente} print 1 ')
+        self.cliente_model.add(cliente)
+        

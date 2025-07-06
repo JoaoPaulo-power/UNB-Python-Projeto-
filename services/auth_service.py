@@ -74,7 +74,7 @@ class AuthService:
             return callback(*args, **kwargs)
         return wrapper
     
-    def get_by_username(self,username):
-        user=self.auth_model.get_by_username(username)
+    def get_by_id(self,id_user):
+        user=self.auth_model.get_by_id(id_user)
         return user
         

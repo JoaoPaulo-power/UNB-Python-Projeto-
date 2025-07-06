@@ -53,7 +53,7 @@
         </div>
         % end
 
-        <a href="/" class="btn btn-outline-secondary mt-4">Voltar para Início</a>
+        <a href="/clientes/home/{{cliente.id}}" class="btn btn-outline-secondary mt-4">Voltar para Início</a>
     </div>
 
 </body>

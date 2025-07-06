@@ -85,7 +85,6 @@ class AuthUserModel:
         self._save()
 
     def get_all(self):
-        
         return self.users
 
     def get_by_id(self, user_id):

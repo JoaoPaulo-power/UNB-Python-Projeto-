@@ -10,11 +10,74 @@
     },
     {
         "id": 2,
-        "username": "gabrielo_octacilio",
-        "email": "Teresapippipipi@gmail.com",
+        "username": "gabriel teste",
+        "email": "teste@gmail.com",
+        "password_hash": "a401dc63c1a4fab8428ab8db076f3d751d35c2f36e295fb8483a9d58cb8206cc",
+        "role": "2",
+        "created_at": "2025-07-06T17:58:54.991925",
+        "is_active": true
+    },
+    {
+        "id": 3,
+        "username": "teste2",
+        "email": "tsete2@gmail.com",
         "password_hash": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
         "role": "2",
-        "created_at": "2025-07-06T13:16:37.431367",
+        "created_at": "2025-07-06T18:06:29.405790",
+        "is_active": true
+    },
+    {
+        "id": 4,
+        "username": "teste3",
+        "email": "teste3@gmail.com",
+        "password_hash": "54bb6a0d2ea7d49744e886aa20859d70b6fc4ee0b9f144353ecb4b39195767f3",
+        "role": "2",
+        "created_at": "2025-07-06T18:17:30.503574",
+        "is_active": true
+    },
+    {
+        "id": 5,
+        "username": "teste4",
+        "email": "teste4@gmail.com",
+        "password_hash": "54bb6a0d2ea7d49744e886aa20859d70b6fc4ee0b9f144353ecb4b39195767f3",
+        "role": "2",
+        "created_at": "2025-07-06T18:21:51.079476",
+        "is_active": true
+    },
+    {
+        "id": 6,
+        "username": "teste5",
+        "email": "teste5@gmail",
+        "password_hash": "54bb6a0d2ea7d49744e886aa20859d70b6fc4ee0b9f144353ecb4b39195767f3",
+        "role": "2",
+        "created_at": "2025-07-06T18:25:11.312108",
+        "is_active": true
+    },
+    {
+        "id": 7,
+        "username": "teste6",
+        "email": "teste6@gmail",
+        "password_hash": "54bb6a0d2ea7d49744e886aa20859d70b6fc4ee0b9f144353ecb4b39195767f3",
+        "role": "2",
+        "created_at": "2025-07-06T18:31:28.681341",
+        "is_active": true
+    },
+    {
+        "id": 8,
+        "username": "teste7",
+        "email": "teste7@gmail.com",
+        "password_hash": "6b8ae3329753d46a4af298ff5b30508b0697a279de761189985bfc7b879e25f2",
+        "role": "2",
+        "created_at": "2025-07-06T18:50:47.686125",
+        "is_active": true
+    },
+    {
+        "id": 9,
+        "username": "teste9",
+        "email": "teste9@gmail.com",
+        "password_hash": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
+        "role": "2",
+        "created_at": "2025-07-06T18:55:52.247895",
         "is_active": true
     }
 ]

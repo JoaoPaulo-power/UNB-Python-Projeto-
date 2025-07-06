@@ -10,9 +10,9 @@
     <h1 class="mb-4">Navegação de listagem</h1>
 
     <div class="d-grid gap-3 col-6 mx-auto">
-        <a href="/clientes/car/<id_cliente:int>" class="btn btn-primary btn-lg">listar carros</a>
-        <a href="/clientes/vist/<id_cliente:int>" class="btn btn-success btn-lg">listar vistorias</a>
-        <a href="/clientes/ped/<id_cliente:int>" class="btn btn-warning btn-lg">listar pedidos</a>
+        <a href="/clientes/car/{{cliente.id}}" class="btn btn-primary btn-lg">listar carros</a>
+        <a href="/clientes/vist/{{cliente.id}}" class="btn btn-success btn-lg">listar vistorias</a>
+        <a href="/clientes/ped/{{cliente.id}}" class="btn btn-warning btn-lg">listar pedidos</a>
     </div>
 
 </body>

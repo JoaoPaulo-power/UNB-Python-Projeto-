@@ -34,10 +34,9 @@ class AuthController(BaseController):
                 if role == 0:
                     return self.redirect('/admim/home')
                 elif role == 1:
-                    return self.redirect('/funcionario/home')
+                    return self.redirect(f'/funcionario/home/{user.id}')
                 elif role == 2:
-
-                    return self.redirect('/clientes/home')
+                    return self.redirect(f'/clientes/add/{user.id}')
             else:
                 return self.render('login', error='Credenciais inválidas') 
 
