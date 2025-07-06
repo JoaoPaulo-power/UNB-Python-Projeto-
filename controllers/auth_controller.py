@@ -13,7 +13,11 @@ class AuthController(BaseController):
         self.app.route('/logout', method='POST', callback=self.logout)
         self.app.route('/register', method=['GET', 'POST'], callback=self.register)
         self.app.route('/dashboard', method='GET', callback=self.dashboard)
+        
+    def home_cliente(self):
+        return self.render('cliente_home',cliente=None)
 
+    
     def login(self):
         if request.method == 'GET':
             if self.auth_service.is_logged_in():
@@ -25,10 +29,17 @@ class AuthController(BaseController):
             password = request.forms.get('password')
             
             user = self.auth_service.login(username, password)
-            if user:
-                return self.redirect('/dashboard')
+            if user: 
+                role=int(user.role)
+                if role == 0:
+                    return self.redirect('/admim/home')
+                elif role == 1:
+                    return self.redirect('/funcionario/home')
+                elif role == 2:
+
+                    return self.redirect('/clientes/home')
             else:
-                return self.render('login', error='Credenciais inválidas')
+                return self.render('login', error='Credenciais inválidas') 
 
     def logout(self):
         

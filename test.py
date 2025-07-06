@@ -19,5 +19,3 @@ prob_service=ProblemaService()
 ped_service=PedidoService()
 
 
-cliente=cliente_service.get_by_id(1)
-print(cliente_service.listar_carros(cliente.id))

@@ -37,9 +37,9 @@ class AuthService:
         
         return self.get_current_user() is not None
 
-    def register_user(self, username, email, password):
+    def register_user(self, username, email, password,role):
         
-        if not username or not email or not password:
+        if not username or not email or not password or not role:
             return False, "Todos os campos são obrigatórios"
         
         if len(password) < 6:
@@ -50,13 +50,16 @@ class AuthService:
         
         if self.auth_model.email_exists(email):
             return False, "Email já está em uso"
+
         
         last_id = max([u.id for u in self.auth_model.get_all()], default=0)
         new_user = AuthUser(
             id=last_id + 1,
             username=username,
             email=email,
-            password_hash=AuthUser.hash_password(password)
+            password_hash=AuthUser.hash_password(password),
+            role=role
+            
         )
         
         self.auth_model.add_user(new_user)
@@ -70,3 +73,8 @@ class AuthService:
                 return redirect('/login')
             return callback(*args, **kwargs)
         return wrapper
+    
+    def get_by_username(self,username):
+        user=self.auth_model.get_by_username(username)
+        return user
+        

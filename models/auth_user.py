@@ -79,13 +79,8 @@ class AuthUserModel:
 
     def _create_default_admin(self):
         """Cria usuário admin padrão"""
-        admin_user = AuthUser(
-            id=1,
-            username='admin',
-            email='admin@sistema.com',
-            password_hash=AuthUser.hash_password('admin123')
-            role = 0
-        )
+        admin_user = AuthUser(id=1,username='admin',email='admin@sistema.com',password_hash=AuthUser.hash_password('admin123'),role = 0)     
+           
         self.users = [admin_user]
         self._save()
 
