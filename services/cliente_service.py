@@ -124,7 +124,8 @@ class ClienteService:
         lista_carros=[] #salvo o objeto ou o dict?
         for carro_id in cliente.lista_carros_id:
             carro=CarrosModel().get_by_chassi(carro_id)# salvando o objeto
-            lista_carros.append(carro)
+            if carro is not None:
+                lista_carros.append(carro)
         return lista_carros
     
     def listar_vistorias(self,id_cliente):
@@ -144,9 +145,35 @@ class ClienteService:
         return lista_pedidos
     
     def delete_vist(self,id_cliente):#id_vistoria
+        """removendo vistoria da lista do cliente"""
+        
         cliente=self.cliente_model.get_by_id(id_cliente)
-        id_vistoria=request.forms.get('id_vistoria')
+        id_vistoria=int(request.forms.get('id_vistoria'))
         for id_vist in cliente.lista_vistorias_id:
             if id_vist == id_vistoria:
                 cliente.lista_vistorias_id.remove(id_vistoria)
+                break
         
+        self.cliente_model.update(cliente)
+        
+    def delete_pedido(self,id_cliente):
+        """removendo pedido  da lista de clientes"""
+        
+        cliente=self.cliente_model.get_by_id(id_cliente)
+        id_pedido=int(request.forms.get('id_pedido'))
+        for id_ped in cliente.lista_pedidos_id:
+            if id_ped == id_pedido:
+                cliente.lista_pedidos_id.remove(id_pedido)
+                break
+        
+        self.cliente_model.update(cliente)
+        
+    def delete_carro(self,id_cliente):
+        cliente=self.cliente_model.get_by_id(id_cliente)
+        numero_chassi=request.forms.get('numero_chassi')
+        for numero_chassi1 in cliente.lista_carros_id:
+            if numero_chassi1 == numero_chassi:
+                cliente.lista_carros_id.remove(numero_chassi1)
+                break
+        
+        self.cliente_model.update(cliente)

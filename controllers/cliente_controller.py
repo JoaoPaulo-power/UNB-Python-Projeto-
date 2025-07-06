@@ -24,7 +24,12 @@ class ClienteController(BaseController):
         self.app.route('/clientes/cad_car/<id_cliente:int>',method=['POST','GET'],callback=self.cad_carro)
         self.app.route('/clientes/cad_vist/<id_cliente:int>',method=['POST','GET'],callback=self.cad_vistoria)
         self.app.route('/clientes/cad_ped/<id_cliente:int>',method=['POST','GET'],callback=self.cad_pedido)
-        #ver variavel na rota
+        ############################################################################################
+        self.app.route('/clientes/del',method='GET',callback=self.clientes_del)
+        self.app.route('/clientes/del_vist/<id_cliente:int>',method=['POST','GET'],callback=self.delete_vistoria)
+        self.app.route('/clientes/del_ped/<id_cliente:int>',method=['POST','GET'],callback=self.delete_pedido)
+        self.app.route('/clientes/del_car/<id_cliente:int>',method=['POST','GET'],callback=self.delete_carro)
+        
         
         ###########################################################################################
         self.app.route('/clientes',method='GET',callback=self.listar_clientes)
@@ -34,15 +39,18 @@ class ClienteController(BaseController):
     
     #paginas render
     
+    def clientes_del(self):
+        return self.render('clientes_del')
+    
     def clientes_cad(self):
-        return self.render('cliente_cad',cliente=None)
+        return self.render('cliente_cad')
      
     
     def clientes_listar(self):
-        return self.render('cliente_listar',cliente=None)
+        return self.render('cliente_listar')
 
     def home_cliente(self):
-        return self.render('cliente_home',cliente=None)
+        return self.render('cliente_home')
     
     ###################################################################
     #paginas default
@@ -125,7 +133,34 @@ class ClienteController(BaseController):
         lista_pedidos = self.cliente_service.listar_pedido(id_cliente)
         return self.render('cliente_pedidos', cliente=cliente,pedidos=lista_pedidos)
 
+##################################################
+#deletar
+    def delete_vistoria(self,id_cliente):
+        if request.method== 'GET':
+            cliente=self.cliente_service.get_by_id(id_cliente)
+            return self.render('cliente_del_vist',cliente=cliente,action=f'/clientes/del_vist/{id_cliente}')
+        else:
+            self.cliente_service.delete_vist(id_cliente)
+            return self.redirect(f'/clientes/vist/{id_cliente}')
+            
     
+    def delete_carro(self,id_cliente):
+        if request.method== 'GET':
+            cliente=self.cliente_service.get_by_id(id_cliente)
+            return self.render('cliente_del_car',cliente=cliente, action=f'/clientes/del_car/{id_cliente}')
+        else:
+            self.cliente_service.delete_carro(id_cliente)
+            return self.redirect(f'/clientes/car/{id_cliente}')
+    
+    def delete_pedido(self,id_cliente):
+        if request.method== 'GET':
+            cliente=self.cliente_service.get_by_id(id_cliente)
+            return self.render('cliente_del_ped',cliente=cliente, action=f'/clientes/del_ped/{id_cliente}')
+        else:
+            self.cliente_service.delete_pedido(id_cliente)
+            return self.redirect(f'/clientes/ped/{id_cliente}')
+        
+        
    
 
 cliente_routes = Bottle()

@@ -13,7 +13,7 @@
         <a href="/clientes/listar" class="btn btn-primary">listar</a>
         <a href="/clientes/cad" class="btn btn-secondary">cadastrar</a>
         <a href="/cliente/edit" class="btn btn-success">editar</a>
-        <a href="/clientes/deletar" class="btn btn-warning">deletar</a>
+        <a href="/clientes/del" class="btn btn-warning">deletar</a>
         <a href="/cliente/pagar" class="btn btn-danger">pagar</a>
     </div>
 
