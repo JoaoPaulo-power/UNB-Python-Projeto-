@@ -21,7 +21,9 @@ class ClienteController(BaseController):
         
         ##########################################################################################
         self.app.route('/clientes/cad',method='GET',callback=self.clientes_cad)
-        self.app.route('/clientes/cad_car/<cliente_id:int>',method=['POST','GET'],callback=self.cad_carro)
+        self.app.route('/clientes/cad_car/<id_cliente:int>',method=['POST','GET'],callback=self.cad_carro)
+        self.app.route('/clientes/cad_vist/<id_cliente:int>',method=['POST','GET'],callback=self.cad_vistoria)
+        self.app.route('/clientes/cad_ped/<id_cliente:int>',method=['POST','GET'],callback=self.cad_pedido)
         #ver variavel na rota
         
         ###########################################################################################
@@ -72,33 +74,42 @@ class ClienteController(BaseController):
         self.redirect('/clientes')
         
     ##################################################################################################
-    #paginas específicas
+    #PAGINAS ESÉCÍFICAS:
+    #cadastro
 
-    def cad_carro(self,cliente_id): # a variavel definida na rota que vem parar aqui
+    def cad_carro(self,id_cliente): # a variavel definida na rota que vem parar aqui
         if request.method== 'GET':
-            cliente=self.cliente_service.get_by_id(cliente_id)
-            return self.render('carro_form',cliente=cliente,action=f'/clientes/cad_carro/{cliente_id}')
+            cliente=self.cliente_service.get_by_id(id_cliente)
+            return self.render('carro_form',cliente=cliente,action=f'/clientes/cad_car/{id_cliente}')
         else:
-            self.cliente_service.cad_carro(cliente_id)#cadastro o carro no json e no cliente
-            return self.redirect('/clientes/car/<id_cliente:int>')
+            self.cliente_service.cad_carro(id_cliente)#cadastro o carro no json e no cliente
+            return self.redirect(f'/clientes/car/{id_cliente}')
         
-    def cad_vistoria(self,cliente_id):
-        self.cliente_service.cad_vist(cliente_id)
-        cliente=self.cliente_service.get_by_id(cliente_id)
-        self.render('vistoria_form',cliente=cliente,action=f'/clientes/cad_vist/{cliente_id}')
-        self.redirect('/clientes/cad/vist')
+    def cad_vistoria(self,id_cliente):
+        if request.method == 'GET':
+            cliente=self.cliente_service.get_by_id(id_cliente)
+            return self.render('vistoria_form',cliente=cliente,action=f'/clientes/cad_vist/{id_cliente}')
+        else:
+            self.cliente_service.cad_vist(id_cliente)
+            return self.redirect(f'/clientes/vist/{id_cliente}')
         
-    def cad_pedido(self,id_cliente):
-        cliente=self.cliente_service.get_by_id(id_cliente)
-        self.cliente_service.cad_pedido(id_cliente)
-        self.render('pedido_form',cliente=cliente,action=f'/clientes/cad_pedido/{id_cliente}')
-        self.redirect('/clientes/cad/ped')
-
+    def cad_pedido(self,id_cliente):# nao ter print pra deixa renderizar a pagina
+        if request.method == 'GET':
+            cliente=self.cliente_service.get_by_id(id_cliente)
+            return self.render('pedido_form',cliente=cliente,action=f'/clientes/cad_ped/{id_cliente}')
+        else:
+            self.cliente_service.cad_pedido(id_cliente)
+            return self.redirect(f'/clientes/ped/{id_cliente}')
+           
+###########################################################################
+#pagar
+    
     def pagar_pedido(self,cliente_id):
         self.cliente_service.pagar_pedido(cliente_id)
         self.cliente_service.cad_pedido(cliente_id)
         self.redirect('/clientes')
-        
+###################################################################################
+#listar
     def listar_carros(self,id_cliente):#tem como eu interpretar essa lista aqui ?? -> sim
         cliente=self.cliente_service.get_by_id(id_cliente)
         lista_carros=self.cliente_service.listar_carros(id_cliente)#retorna uma lista com todos carros em forma de objeto

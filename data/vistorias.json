@@ -25,5 +25,26 @@
         ],
         "prazo": "3 dias",
         "status": "closed"
+    },
+    {
+        "id": 4,
+        "carro_id": "1567-86",
+        "funcionarios_id": [],
+        "prazo": "",
+        "status": "open"
+    },
+    {
+        "id": 5,
+        "carro_id": "7851-16",
+        "funcionarios_id": [],
+        "prazo": "",
+        "status": "open"
+    },
+    {
+        "id": 6,
+        "carro_id": "4567-52",
+        "funcionarios_id": [],
+        "prazo": "",
+        "status": "open"
     }
 ]

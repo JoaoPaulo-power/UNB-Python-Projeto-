@@ -8,5 +8,21 @@
         "prazo": "3 dias",
         "status": "closed",
         "progresso": "50%"
+    },
+    {
+        "id": 2,
+        "carro_id": "1234-56",
+        "funcionarios_id": [],
+        "prazo": "",
+        "status": "open",
+        "progresso": ""
+    },
+    {
+        "id": 3,
+        "carro_id": "1234-56",
+        "funcionarios_id": [],
+        "prazo": "",
+        "status": "open",
+        "progresso": ""
     }
 ]
