@@ -2,17 +2,19 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>{{'Editar Usuário' if user else 'Adicionar Usuário'}}</title>
+    <title>Login - Sistema</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             --success-gradient: linear-gradient(45deg, #27ae60, #2ecc71);
-            --secondary-gradient: linear-gradient(45deg, #95a5a6, #7f8c8d);
+            --secondary-color: #95a5a6;
             --text-dark: #2c3e50;
             --text-blue: #3498db;
             --white: #ffffff;
+            --error-bg: #f8d7da;
+            --error-text: #721c24;
         }
         
         body {
@@ -26,7 +28,7 @@
             padding: 20px;
         }
         
-        .form-card {
+        .auth-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 20px;
@@ -34,10 +36,10 @@
             padding: 40px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
         }
         
-        .user-icon {
+        .auth-icon {
             width: 80px;
             height: 80px;
             border-radius: 50%;
@@ -50,12 +52,20 @@
             font-size: 1.8rem;
         }
         
-        .form-title {
+        .auth-title {
             color: var(--text-dark);
             font-weight: 700;
             margin-bottom: 8px;
             text-align: center;
             font-size: 1.8rem;
+        }
+        
+        .auth-subtitle {
+            color: var(--text-blue);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
         
         .form-group {
@@ -105,129 +115,133 @@
             outline: none;
         }
         
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            justify-content: center;
-        }
-        
-        .btn {
-            padding: 14px 28px;
+        .btn-auth {
+            width: 100%;
+            padding: 14px;
             border-radius: 12px;
             font-weight: 600;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
         }
         
-        .btn-submit {
+        .btn-primary {
             background: var(--success-gradient);
             color: var(--white);
         }
         
-        .btn-submit:hover {
+        .btn-primary:hover {
             background: linear-gradient(45deg, #2ecc71, #27ae60);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
         }
         
-        .btn-cancel {
-            background: var(--secondary-gradient);
-            color: var(--white);
-            text-decoration: none;
+        .auth-footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.95rem;
         }
         
-        .btn-cancel:hover {
-            background: linear-gradient(45deg, #7f8c8d, #95a5a6);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(127, 140, 141, 0.4);
-            color: var(--white);
+        .auth-footer a {
+            color: var(--text-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .alert-error {
+            background-color: var(--error-bg);
+            color: var(--error-text);
+        }
+        
+        .alert i {
+            margin-right: 12px;
+            font-size: 1.2rem;
         }
         
         @media (max-width: 576px) {
-            .form-card {
+            .auth-card {
                 padding: 30px 20px;
             }
             
-            .user-icon {
+            .auth-icon {
                 width: 70px;
                 height: 70px;
                 font-size: 1.5rem;
             }
             
-            .form-title {
+            .auth-title {
                 font-size: 1.5rem;
-            }
-            
-            .button-group {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="form-card">
-        <div class="user-icon">
-            <i class="fas fa-user-edit"></i>
+    <div class="auth-card">
+        <div class="auth-icon">
+            <i class="fas fa-user"></i>
         </div>
         
-        <h1 class="form-title">{{'Editar Usuário' if user else 'Adicionar Usuário'}}</h1>
+        <h1 class="auth-title">Login</h1>
+        <p class="auth-subtitle">Entre com suas credenciais</p>
         
-        <form action="{{action}}" method="post">
+        % if error:
+        <div class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i>
+            {{error}}
+        </div>
+        % end
+        
+        <form action="/login" method="post">
             <div class="form-group">
-                <label for="name">
-                    <i class="fas fa-user"></i>Nome
+                <label for="username">
+                    <i class="fas fa-user"></i>Usuário
                 </label>
                 <div class="input-wrapper">
                     <i class="fas fa-user input-icon"></i>
-                    <input type="text" class="form-control" id="name" name="name" 
-                           required value="{{user.name if user else ''}}" 
-                           placeholder="Digite o nome completo">
+                    <input type="text" class="form-control" 
+                           id="username" name="username" required 
+                           placeholder="Digite seu usuário">
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="email">
-                    <i class="fas fa-envelope"></i>Email
+                <label for="password">
+                    <i class="fas fa-lock"></i>Senha
                 </label>
                 <div class="input-wrapper">
-                    <i class="fas fa-envelope input-icon"></i>
-                    <input type="email" class="form-control" id="email" name="email" 
-                           required value="{{user.email if user else ''}}" 
-                           placeholder="Digite o email">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" class="form-control" 
+                           id="password" name="password" required 
+                           placeholder="Digite sua senha">
                 </div>
             </div>
             
-            <div class="form-group">
-                <label for="birthdate">
-                    <i class="fas fa-calendar-day"></i>Data de Nascimento
-                </label>
-                <div class="input-wrapper">
-                    <i class="fas fa-calendar-day input-icon"></i>
-                    <input type="date" class="form-control" id="birthdate" name="birthdate" 
-                           required value="{{user.birthdate if user else ''}}">
-                </div>
-            </div>
-            
-            <div class="button-group">
-                <button type="submit" class="btn btn-submit">
-                    <i class="fas fa-save"></i>Salvar
-                </button>
-                <a href="/users" class="btn btn-cancel">
-                    <i class="fas fa-arrow-left"></i>Voltar
-                </a>
-            </div>
+            <button type="submit" class="btn-auth btn-primary">
+                <i class="fas fa-sign-in-alt"></i>Entrar
+            </button>
         </form>
+        
+        <div class="auth-footer">
+            <p>Não tem uma conta? <a href="/register">Registre-se aqui</a></p>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

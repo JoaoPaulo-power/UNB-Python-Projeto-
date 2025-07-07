@@ -1,12 +1,15 @@
-# Projeto Template: POO com Python + Bottle + JSON
+# Concessionária Fachada: POO com Python + Bottle + JSON
 
 Este é um projeto de template educacional voltado para o ensino de **Programação Orientada a Objetos (POO)** do Prof. Lucas Boaventura, Universidade de Brasília (UnB).
 
 Utiliza o microframework **Bottle**. Ideal para uso em disciplinas introdutórias de Engenharia de Software ou Ciência da Computação.
 
-## 💡 Objetivo
+## 📌: Principais Funcionalidades
 
-Fornecer uma base simples, extensível e didática para construção de aplicações web orientadas a objetos com aplicações WEB em Python, ideal para trabalhos finais ou exercícios práticos.
+- Login e Cadastro;
+- Funcionários e Clientes;
+- Salva os dados em .JSON;
+- uso da hashlib para codificação de dados sensíveis.
 
 ---
 
@@ -28,7 +31,8 @@ poo-python-bottle-template/
 └── .vscode/ # Configurações opcionais do VS Code
 ```
 
-
+## diagrama de classes
+![Diagrama de Class](\UNB-Python-Projeto\static\img\1000054426)
 ---
 
 ## 📁 Descrição das Pastas
@@ -87,19 +91,3 @@ python main.py
 
 ---
 
-## ✍️ Personalização
-Para adicionar novos modelos (ex: Atividades):
-
-1. Crie a classe no diretório **models/**.
-
-2. Crie o service correspondente para manipulação do JSON.
-
-3. Crie o controller com as rotas.
-
-4. Crie as views .tpl associadas.
-
----
-
-## 🧠 Autor e Licença
-Projeto desenvolvido como template didático para disciplinas de Programação Orientada a Objetos, baseado no [BMVC](https://github.com/hgmachine/bmvc_start_from_this).
-Você pode reutilizar, modificar e compartilhar livremente.
