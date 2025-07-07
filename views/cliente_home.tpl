@@ -7,7 +7,7 @@
 </head>
 <body class="bg-light d-flex flex-column align-items-center justify-content-center vh-100">
 
-    <h1 class="mb-4">Home do cliente.id</h1>
+    <h1 class="mb-4">Home do {{cliente.name}}</h1>
 
     <div class="d-grid gap-3 col-6 mx-auto">
         <a href="/clientes/listar/{{cliente.id}}" class="btn btn-primary">listar</a>

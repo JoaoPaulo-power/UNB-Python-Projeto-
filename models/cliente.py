@@ -2,18 +2,28 @@ import os
 from models.user import User, DATA_DIR
  
 class Cliente(User):
-    def __init__(self, id, name='', email='', birthdate='', senha='',lista_carros_id=None,lista_pedidos_id=None,lista_vistorias_id=None):
-        super().__init__(id, name, email, birthdate, senha)
+    def __init__(self, id, role, name='', email='', birthdate='', senha='',lista_carros_id=None,lista_pedidos_id=None,lista_vistorias_id=None):
+        super().__init__(id, role, name, email, birthdate, senha)
         self.lista_carros_id= lista_carros_id if lista_carros_id is not None else []
         self.lista_pedidos_id=lista_pedidos_id if lista_pedidos_id is not None else []
         self.lista_vistorias_id=lista_vistorias_id if lista_vistorias_id is not None else []
+      
+        
+        
+    def __repr__(self):
+        return (f"Cliente(id={self.id}, name='{self.name}', email='{self.email}', "
+                f"birthdate='{self.birthdate}', senha='{self.senha}, listas_ped={self.lista_pedidos_id}"
+                f"lista_car={self.lista_carros_id}, lista_vist={self.lista_vistorias_id}") 
     
+    
+        
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
             'email': self.email,
             'birthdate': self.birthdate,
+            'role':self.role,
             'senha':self.senha,
             'lista de pedidos_id':[pedido.to_dict() if hasattr(pedido, 'to_dict') else pedido for pedido in self.lista_pedidos_id],
             'lista de vistorias_id': [vistorias.to_dict() if hasattr(vistorias, 'to_dict') else vistorias for vistorias in self.lista_vistorias_id],
@@ -27,6 +37,7 @@ class Cliente(User):
             name=data['name'],
             email=data['email'],
             birthdate=data['birthdate'],
+            role=data['role'],
             senha=data['senha'],
             lista_pedidos_id=data['lista de pedidos_id'],
             lista_vistorias_id=data['lista de vistorias_id'],
@@ -66,12 +77,27 @@ class ClienteModel:
         self._save()
 
     def update(self, updated_cliente):
+        """  updated_cliente=Cliente(updated_cliente) """
+        print(f'\n{updated_cliente}')
+        
         for i ,a in enumerate(self.clientes):
             if a.id == updated_cliente.id:
-                self.clientes[i] = updated_cliente
+                self.clientes[i]=updated_cliente
+                
                 self._save()
                 break
     
+    def _User_to_cliente(self,user_id,cliente_id):
+        
+        from models.user import UserModel,User
+        user=UserModel().get_by_id(user_id)
+        cliente=Cliente('','','','','')
+        cliente.id=user.id
+        cliente.name=user.username
+        cliente.email=user.email
+        cliente.senha=user.password_hash
+        return cliente
+        
     def delete(self,cliente_id):
         self.clientes= [a for a in self.clientes if a.id != cliente_id]
         self._save()

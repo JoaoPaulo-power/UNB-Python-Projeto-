@@ -1,113 +1,33 @@
 [
     {
-        "id": 1,
-        "name": "",
-        "email": "",
+        "id": 2,
+        "name": "15/7/2005",
+        "email": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
         "birthdate": "",
+        "role": 2,
         "senha": "",
+        "lista de pedidos_id": [],
+        "lista de vistorias_id": [],
+        "lista de carros_id": [
+            "7895",
+            "0000000000"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "gabrielo_octacilio",
+        "email": "gabriel.otacilio@135gmail.com",
+        "birthdate": "15/7/2005",
+        "role": "",
+        "senha": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
         "lista de pedidos_id": [
             1
         ],
         "lista de vistorias_id": [
-            1,
-            2,
-            3
+            2
         ],
         "lista de carros_id": [
-            123,
-            125
+            "4589-63 2"
         ]
-    },
-    {
-        "id": 2,
-        "name": "",
-        "email": "",
-        "birthdate": "",
-        "senha": "",
-        "lista de pedidos_id": [],
-        "lista de vistorias_id": [],
-        "lista de carros_id": []
-    },
-    {
-        "id": 2,
-        "name": "",
-        "email": "",
-        "birthdate": "",
-        "senha": "",
-        "lista de pedidos_id": [],
-        "lista de vistorias_id": [],
-        "lista de carros_id": []
-    },
-    {
-        "id": 3,
-        "name": "",
-        "email": "",
-        "birthdate": "",
-        "senha": "",
-        "lista de pedidos_id": [],
-        "lista de vistorias_id": [],
-        "lista de carros_id": []
-    },
-    {
-        "id": 4,
-        "name": "",
-        "email": "",
-        "birthdate": "",
-        "senha": "",
-        "lista de pedidos_id": [],
-        "lista de vistorias_id": [],
-        "lista de carros_id": []
-    },
-    {
-        "id": 5,
-        "name": "",
-        "email": "",
-        "birthdate": "",
-        "senha": "",
-        "lista de pedidos_id": [],
-        "lista de vistorias_id": [],
-        "lista de carros_id": []
-    },
-    {
-        "id": 6,
-        "name": "",
-        "email": "",
-        "birthdate": "",
-        "senha": "",
-        "lista de pedidos_id": [],
-        "lista de vistorias_id": [],
-        "lista de carros_id": []
-    },
-    {
-        "id": 7,
-        "name": "15/07/2005",
-        "email": "54bb6a0d2ea7d49744e886aa20859d70b6fc4ee0b9f144353ecb4b39195767f3",
-        "birthdate": "",
-        "senha": "",
-        "lista de pedidos_id": [],
-        "lista de vistorias_id": [],
-        "lista de carros_id": [
-            "4589-63"
-        ]
-    },
-    {
-        "id": 8,
-        "name": "teste7@gmail.com",
-        "email": "15/7/2005",
-        "birthdate": "6b8ae3329753d46a4af298ff5b30508b0697a279de761189985bfc7b879e25f2",
-        "senha": "",
-        "lista de pedidos_id": [],
-        "lista de vistorias_id": [],
-        "lista de carros_id": []
-    },
-    {
-        "id": 9,
-        "name": "teste9",
-        "email": "teste9@gmail.com",
-        "birthdate": "15/7/2005",
-        "senha": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
-        "lista de pedidos_id": [],
-        "lista de vistorias_id": [],
-        "lista de carros_id": []
     }
 ]

@@ -3,16 +3,18 @@ from models.user import User, DATA_DIR
 
 
 class Funcionario(User):
-    def __init__(self, id, birthdate='', senha='',salario=0, name='', email='', lista_pedidos_id=None, lista_vistorias_id=None):
-        super().__init__(id, name, email, birthdate, senha)
+    def __init__(self, id, role, name='', email='', birthdate='', senha='',salario=0,lista_pedidos_id=None,lista_vistorias_id=None,):
+        super().__init__(id, role, name, email, birthdate, senha)
         self.lista_pedidos_id=lista_pedidos_id if lista_pedidos_id is not None else []
         self.lista_vistorias_id=lista_vistorias_id if lista_vistorias_id is not None else []
         self.salario=salario
+        
         
     def to_dict(self):
         return {
             'id':self.id,
             'birthdate':self.birthdate,
+            'role':self.role,
             'senha':self.senha,
             'salario':self.salario,
             'name':self.name,
@@ -27,6 +29,7 @@ class Funcionario(User):
         return cls(
             id=data['id'],
             birthdate=data['birthdate'],
+            role=data['role'],
             senha=data['senha'],
             salario=data['salario'],
             name=data['name'],

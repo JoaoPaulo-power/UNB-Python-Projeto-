@@ -13,6 +13,7 @@
         <h1 class="mb-4 text-center">vistorias do cliente</h1>
 
         % for vistoria in vistorias:
+       
         <div class="d-flex align-items-center my-4">
             <hr class="flex-grow-1 border-primary">
             <span class="mx-3 text-primary fw-bold">

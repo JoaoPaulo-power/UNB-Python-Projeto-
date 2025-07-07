@@ -2,6 +2,7 @@
     {
         "id": 1,
         "birthdate": "teste gabriel",
+        "role":1,
         "senha": "teste gabriel",
         "salario": 265.32977051444203,
         "name": "teste gabriel",

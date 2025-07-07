@@ -1,29 +1,16 @@
 [
     {
         "id": 1,
-        "carro_id": 123,
-        "funcionarios_id": [
-            1
-        ],
-        "prazo": "3 dias",
-        "status": "closed"
+        "carro_id": "4589-63 2",
+        "funcionarios_id": [],
+        "prazo": "",
+        "status": "open"
     },
     {
         "id": 2,
-        "carro_id": 123,
-        "funcionarios_id": [
-            1
-        ],
-        "prazo": "3 dias",
-        "status": "closed"
-    },
-    {
-        "id": 3,
-        "carro_id": 123,
-        "funcionarios_id": [
-            1
-        ],
-        "prazo": "3 dias",
-        "status": "closed"
+        "carro_id": "4589-63 2",
+        "funcionarios_id": [],
+        "prazo": "",
+        "status": "open"
     }
 ]

@@ -27,7 +27,7 @@ class ClienteController(BaseController):
         self.app.route('/clientes/cad_vist/<id_cliente:int>',method=['POST','GET'],callback=self.cad_vistoria)
         self.app.route('/clientes/cad_ped/<id_cliente:int>',method=['POST','GET'],callback=self.cad_pedido)
         ############################################################################################
-        self.app.route('/clientes/del',method='GET',callback=self.clientes_del)
+        self.app.route('/clientes/del/<id_user>',method='GET',callback=self.clientes_del)
         self.app.route('/clientes/del_vist/<id_cliente:int>',method=['POST','GET'],callback=self.delete_vistoria)
         self.app.route('/clientes/del_ped/<id_cliente:int>',method=['POST','GET'],callback=self.delete_pedido)
         self.app.route('/clientes/del_car/<id_cliente:int>',method=['POST','GET'],callback=self.delete_carro)
@@ -41,18 +41,23 @@ class ClienteController(BaseController):
     #paginas render
     
     def clientes_del(self,id_user):
-        cliente=self.cliente_service.get_by_id(id_user)
+        id_user=int(id_user)
+        cliente=self.cliente_service.get_by_id(id_user)# ta vindo none
+        print(id_user)
         return self.render('clientes_del',cliente=cliente)
     
     def clientes_cad(self,id_cliente):
-        cliente=self.cliente_service.get_by_id(id_cliente)
+        id_user=int(id_cliente)
+        cliente=self.cliente_service.get_by_id(id_user)
         return self.render('cliente_cad',cliente=cliente) 
     
     def clientes_listar(self,id_user):
+        id_user=int(id_user)
         cliente=self.cliente_service.get_by_id(id_user)
         return self.render('cliente_listar',cliente=cliente)
 
     def home_cliente(self,id_user):
+        id_user=int(id_user)
         cliente=self.cliente_service.get_by_id(id_user)
         return self.render('cliente_home',cliente=cliente)
     
@@ -106,7 +111,8 @@ class ClienteController(BaseController):
     def cad_vistoria(self,id_cliente):
         if request.method == 'GET':
             cliente=self.cliente_service.get_by_id(id_cliente)
-            return self.render('vistoria_form',cliente=cliente,action=f'/clientes/cad_vist/{id_cliente}')
+            lista = cliente.lista_carros_id
+            return self.render('vistoria_form',cliente=cliente,carros= lista,action=f'/clientes/cad_vist/{id_cliente}')
         else:
             self.cliente_service.cad_vist(id_cliente)
             return self.redirect(f'/clientes/vist/{id_cliente}')
@@ -136,6 +142,7 @@ class ClienteController(BaseController):
     def listar_vistorias(self,id_cliente):
         cliente = self.cliente_service.get_by_id(id_cliente)
         lista_vistorias = self.cliente_service.listar_vistorias(id_cliente)
+        print(lista_vistorias)
         return self.render('cliente_vistorias',cliente=cliente,vistorias=lista_vistorias)
     
     def listar_pedidos(self,id_cliente):
@@ -148,7 +155,8 @@ class ClienteController(BaseController):
     def delete_vistoria(self,id_cliente):
         if request.method== 'GET':
             cliente=self.cliente_service.get_by_id(id_cliente)
-            return self.render('cliente_del_vist',cliente=cliente,action=f'/clientes/del_vist/{id_cliente}')
+            lista_id_vist=cliente.lista_vistorias_id
+            return self.render('cliente_del_vist',cliente=cliente,vistorias_ids=lista_id_vist,action=f'/clientes/del_vist/{id_cliente}')
         else:
             self.cliente_service.delete_vist(id_cliente)
             return self.redirect(f'/clientes/vist/{id_cliente}')

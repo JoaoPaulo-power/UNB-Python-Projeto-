@@ -14,6 +14,6 @@
         <a href="/clientes/vist/{{cliente.id}}" class="btn btn-success btn-lg">listar vistorias</a>
         <a href="/clientes/ped/{{cliente.id}}" class="btn btn-warning btn-lg">listar pedidos</a>
     </div>
-
+    <a href="/clientes/home/{{cliente.id}}" class="mt-2 btn btn-secondary">Voltar</a>
 </body>
 </html>
