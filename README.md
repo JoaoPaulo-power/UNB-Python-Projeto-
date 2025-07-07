@@ -8,7 +8,8 @@ Utiliza o microframework **Bottle**. Ideal para uso em disciplinas introdutória
 
 - Login e Cadastro;
 - Funcionários e Clientes;
-- Clientes consegue: cadastrar carro,cadastrar vistoria ,cadastrar pedido, editar cada um destes, listar cada um deles, e pagar o preço 
+- login diferencia cliente de funcionario na hora de logar;
+- Clientes consegue: cadastrar carro,cadastrar vistoria ,cadastrar pedido, editar cada um destes, listar cada um deles, e pagar o preço ;
 - Salva os dados em .JSON;
 - uso da hashlib para codificação de dados sensíveis.
 
