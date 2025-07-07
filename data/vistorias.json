@@ -1,21 +1,7 @@
 [
     {
         "id": 1,
-        "carro_id": "4589-63 2",
-        "funcionarios_id": [],
-        "prazo": "",
-        "status": "open"
-    },
-    {
-        "id": 2,
-        "carro_id": "4589-63 2",
-        "funcionarios_id": [],
-        "prazo": "",
-        "status": "open"
-    },
-    {
-        "id": 3,
-        "carro_id": "4589-63 2",
+        "carro_id": "0000000000",
         "funcionarios_id": [],
         "prazo": "",
         "status": "open"

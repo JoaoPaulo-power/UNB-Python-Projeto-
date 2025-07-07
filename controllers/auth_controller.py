@@ -13,6 +13,11 @@ class AuthController(BaseController):
         self.app.route('/logout', method='POST', callback=self.logout)
         self.app.route('/register', method=['GET', 'POST'], callback=self.register)
         self.app.route('/dashboard', method='GET', callback=self.dashboard)
+        self.app.route('/home', method='GET', callback=self.home_page)
+        self.app.route('/', methoed='GET', callback=lambda: redirect('/home'))
+
+    def home_page(self):
+        return self.render('home')
         
     def home_cliente(self):
         return self.render('cliente_home',cliente=None)
@@ -34,7 +39,7 @@ class AuthController(BaseController):
                 if role == 0:
                     return self.redirect('/admim/home')
                 elif role == 1:
-                    return self.redirect(f'/funcionario/home/{user.id}')
+                    return self.redirect(f'/funcionarios/add/{user.id}')
                 elif role == 2:
                     return self.redirect(f'/clientes/add/{user.id}')
             else:

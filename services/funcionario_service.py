@@ -207,5 +207,9 @@ class FuncionarioService:
     def listar_salario(self,id_funcionario):
         funcionario=self.get_by_id(id_funcionario)
         return funcionario.salario
+    
+    def add_funcionario(self):
+        
+        ...
 
         

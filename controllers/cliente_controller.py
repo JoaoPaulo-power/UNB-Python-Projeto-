@@ -239,10 +239,11 @@ class ClienteController(BaseController):
 
         
     def edit_ped_especific(self, id_cliente, id_ped):
+        from models.pedidos import Pedido,PedidosModel
         if request.method == 'GET':
         # Buscar cliente e pedido
             cliente = self.cliente_service.get_by_id(int(id_cliente))
-            pedido = self.cliente_service.get_pedido_by_id(int(id_ped))
+            pedido = PedidosModel().get_by_id(id_ped)
             if not pedido:
                 return "Pedido não encontrado", 404
             return self.render('edit_ped_especific', cliente=cliente, pedido=pedido, action=f'/clientes/edit_ped/{id_cliente}/{id_ped}')
@@ -251,7 +252,7 @@ class ClienteController(BaseController):
             status = request.forms.get('status')
             carro_id = request.forms.get('carro_id')
             prazo = request.forms.get('prazo')
-            from models.pedidos import Pedido,PedidosModel
+            
             pedido = PedidosModel().get_by_id(id_ped)
             if not pedido:
                 return "Pedido não encontrado", 404

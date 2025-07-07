@@ -10,20 +10,20 @@
     },
     {
         "id": 2,
-        "username": "teste1",
-        "email": "adriano.opinheiro@gmail.com",
+        "username": "Gabriel.otacilio",
+        "email": "gabriel.otacilio@135gmail.com",
         "password_hash": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
         "role": "2",
-        "created_at": "2025-07-06T20:32:48.213311",
+        "created_at": "2025-07-07T11:27:46.615391",
         "is_active": true
     },
     {
         "id": 3,
-        "username": "gabrielo_octacilio",
-        "email": "gabriel.otacilio@135gmail.com",
+        "username": "nome",
+        "email": "email@email",
         "password_hash": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
-        "role": "2",
-        "created_at": "2025-07-06T21:39:46.751690",
+        "role": "1",
+        "created_at": "2025-07-07T12:06:28.204105",
         "is_active": true
     }
 ]
