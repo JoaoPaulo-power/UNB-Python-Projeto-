@@ -142,7 +142,9 @@ class ClienteService:
         lista_pedidos=[]
         for id_ped in cliente.lista_pedidos_id:
             pedido=PedidosModel().get_by_id(id_ped)
-            lista_pedidos.append(pedido)
+            if pedido is not None:
+                lista_pedidos.append(pedido)
+                print(lista_pedidos)
         return lista_pedidos
     
     def add_cliente(self,id_user):
@@ -191,3 +193,17 @@ class ClienteService:
                 break
         
         self.cliente_model.update(cliente)   
+        
+    def edit_car_especific(self,numero_chassi):
+        nova_marca = request.forms.get('marca')
+        novo_modelo = request.forms.get('modelo')
+        novo_ano = request.forms.get('ano')
+        
+        carro = CarrosModel().get_by_chassi(numero_chassi)
+        if carro:
+            carro.marca=nova_marca
+            carro.ano=novo_ano
+            carro.modelo=novo_modelo
+            
+            CarrosModel().update(carro)
+            

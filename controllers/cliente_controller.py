@@ -34,11 +34,25 @@ class ClienteController(BaseController):
         
         
         ###########################################################################################
+        self.app.route('/clientes/edit/<id_cliente:int>',method='GET', callback= self.cliente_edit)
+        self.app.route('/clientes/edit_car/<id_cliente:int>',method=['GET','POST'], callback= self.edit_car)
+        self.app.route('/clientes/edit_vist/<id_cliente:int>',method=['GET','POST'], callback= self.edit_vist)
+        self.app.route('/clientes/edit_ped/<id_cliente:int>',method=['GET','POST'], callback= self.edit_ped)
+        self.app.route('/clientes/edit_carro/<id_cliente:int>/<carro_numero_chassi>',method=['GET','POST'], callback= self.edit_car_especific)
+        self.app.route('/clientes/edit_vist/<id_cliente:int>/<id_vist:int>',method=['GET','POST'], callback= self.edit_vist_especific)
+        self.app.route('/clientes/edit_ped/<id_cliente:int>/<id_ped:int>',method=['GET','POST'], callback= self.edit_ped_especific)
+        
+        
+        ##################################################################################################
         self.app.route('/clientes',method='GET',callback=self.listar_clientes)
         self.app.route('/clientes/add/<id_user:int>',method= ['GET','POST'],callback=self.add_cliente)
-        self.app.route('/clientes/edit/<id_cliente:int>',method=['GET','POST'], callback= self.edit_cliente)
+        
         self.app.route('/clientes/delete/<id_cliente:int>',method='POST', callback= self.delete)    
     #paginas render
+    def cliente_edit(self,id_cliente):
+        id_cliente=int(id_cliente)
+        cliente=self.cliente_service.get_by_id(id_cliente)        
+        return self.render('clientes_edit',cliente=cliente)
     
     def clientes_del(self,id_user):
         id_user=int(id_user)
@@ -177,7 +191,82 @@ class ClienteController(BaseController):
         else:
             self.cliente_service.delete_pedido(id_cliente)
             return self.redirect(f'/clientes/ped/{id_cliente}')
+###########################################################################
+#editar
+    def edit_car(self,id_cliente):
+            id_cliente=int(id_cliente)
+            cliente=self.cliente_service.get_by_id(id_cliente)
+            lista_carros=self.cliente_service.listar_carros(id_cliente)
+            return self.render('edit_carro',cliente=cliente,carros=lista_carros,action=f'/clientes/edit_car/{id_cliente}')
+           
+    def edit_car_especific(self,id_cliente,carro_numero_chassi):
+        if request.method == 'GET':
+            from models.carro import CarrosModel
+            id_cliente=int(id_cliente)
+            cliente=self.cliente_service.get_by_id(id_cliente)
+            carro=CarrosModel().get_by_chassi(carro_numero_chassi)
+            return self.render('edit_car_especific',cliente=cliente,carro=carro,action=f'/clientes/edit_carro/{cliente.id}/{carro.numero_chassi}')
+        else:
+            self.cliente_service.edit_car_especific(carro_numero_chassi)
+            return self.redirect(f'/clientes/edit_car/{id_cliente}')
+
         
+    
+    def edit_vist(self,id_cliente):
+        id_cliente=int(id_cliente)
+        cliente=self.cliente_service.get_by_id(id_cliente)
+        lista_vistorias=self.cliente_service.listar_vistorias(id_cliente)
+        return self.render('edit_vist',cliente=cliente,carros=lista_vistorias,action=f'/clientes/edit_vist/{id_cliente}')
+        ...
+    def edit_vist_especific(self,id_cliente,id_vist):
+        if request.method == 'GET':
+            from models.vistorias import VistoriasModel
+            id_cliente=int(id_cliente)
+            cliente=self.cliente_service.get_by_id(id_cliente)
+            vistoria=VistoriasModel().get_by_id(id_vist)
+            lista_carros=self.cliente_service.listar_carros(id_cliente)
+            return self.render('edit_vist_especific',cliente=cliente,vistoria=vistoria,carros=lista_carros,action=f'/clientes/edit_vist/{cliente.id}/{vistoria.id}')
+        
+    #post de vistorias
+    
+    def edit_ped(self,id_cliente):
+        id_cliente=int(id_cliente)
+        cliente=self.cliente_service.get_by_id(id_cliente)
+        lista_pedidos=self.cliente_service.listar_pedido(id_cliente)
+        id_ped=request.forms.get('pedido_id')
+
+        return self.render('edit_ped',cliente=cliente,pedidos=lista_pedidos,action=f'/clientes/edit_ped/{id_cliente}/{id_ped}')
+
+        
+    def edit_ped_especific(self, id_cliente, id_ped):
+        if request.method == 'GET':
+        # Buscar cliente e pedido
+            cliente = self.cliente_service.get_by_id(int(id_cliente))
+            pedido = self.cliente_service.get_pedido_by_id(int(id_ped))
+            if not pedido:
+                return "Pedido não encontrado", 404
+            return self.render('edit_ped_especific', cliente=cliente, pedido=pedido, action=f'/clientes/edit_ped/{id_cliente}/{id_ped}')
+        else:
+            # Receber dados do form
+            status = request.forms.get('status')
+            carro_id = request.forms.get('carro_id')
+            prazo = request.forms.get('prazo')
+            from models.pedidos import Pedido,PedidosModel
+            pedido = PedidosModel().get_by_id(id_ped)
+            if not pedido:
+                return "Pedido não encontrado", 404
+
+            # Atualizar pedido
+            pedido.status = status
+            pedido.carro_id = carro_id
+            pedido.prazo = prazo
+
+            PedidosModel().update(pedido)
+
+            # Redirecionar para lista de pedidos do cliente
+            self.redirect(f'/clientes/edit_ped/{id_cliente}')
+            ...
+
            
 
 cliente_routes = Bottle()
