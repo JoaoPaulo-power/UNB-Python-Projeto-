@@ -8,6 +8,7 @@ Utiliza o microframework **Bottle**. Ideal para uso em disciplinas introdutória
 
 - Login e Cadastro;
 - Funcionários e Clientes;
+- Clientes consegue: cadastrar carro,cadastrar vistoria ,cadastrar pedido, editar cada um destes, listar cada um deles, e pagar o preço 
 - Salva os dados em .JSON;
 - uso da hashlib para codificação de dados sensíveis.
 
@@ -49,11 +50,17 @@ Contém as classes responsáveis por lidar com as rotas da aplicação. Exemplos
 ### `models/`
 Define as classes que representam os dados da aplicação. Exemplo:
 - `auth_user.py`: classe `auth_user`, com atributos de um usario comum a diferencça é que esse usuario ta sendo 'rastreado' pra ser autenticado.
+
 - `carro.py`: classe `Carro`, com atributos como `numero_chassi`,`modelo`,`ano`,`marca`, etc.
+
 - `funcionario.py`: classe `Funcionario`, com atributos como `id`, `name`, `email`,igual a `auth_user`, com metodos as mais que são as listas como, `listas_vistorias_id`,`lista_pedidos_id`
+
 - `pedidos.py`: classe `Pedido`,É a classe de pedidos que vai ser uma solicitação do `cliente` tbm pro `funcionario` mas agora pra concertar o ``carro``
+
 - `vistoria.py`: classe `Vistoria`, É a classe de vistorias que vai ser uma solicitação do `cliente` pro `funcionario` pra tal achar o `problema` do carro.
+
 - `problema.py`: classe `Problema`, com atributos como `peca quebrada`, `valor`, `e prazo` ele vai ser adicionado ao carro durante a vistoria.
+
 - `user.py`: classe `User`, com atributos como `id`, `name`, `email`, etc.
 
 ### `services/`
