@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "username": "admin",
+        "email": "admin@sistema.com",
+        "password_hash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+        "role": 0,
+        "created_at": "2025-07-06T13:09:57.336735",
+        "is_active": true
+    },
+    {
+        "id": 2,
+        "username": "teste1",
+        "email": "adriano.opinheiro@gmail.com",
+        "password_hash": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
+        "role": "2",
+        "created_at": "2025-07-06T20:32:48.213311",
+        "is_active": true
+    },
+    {
+        "id": 3,
+        "username": "gabrielo_octacilio",
+        "email": "gabriel.otacilio@135gmail.com",
+        "password_hash": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
+        "role": "2",
+        "created_at": "2025-07-06T21:39:46.751690",
+        "is_active": true
+    },
+    {
+        "id": 4,
+        "username": "joÃ£o",
+        "email": "joao@gmail.com",
+        "password_hash": "93b00fb2bf23ebc62f8dfe8a40c02756b2b0cca5ee22e11ea4f8baf5f27c787e",
+        "role": "1",
+        "created_at": "2025-07-06T23:48:08.409587",
+        "is_active": true
+    },
+    {
+        "id": 5,
+        "username": "jonas",
+        "email": "jonas@gmail.com",
+        "password_hash": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
+        "role": "2",
+        "created_at": "2025-07-06T23:55:44.602756",
+        "is_active": true
+    }
+]
