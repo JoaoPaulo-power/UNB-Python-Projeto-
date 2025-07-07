@@ -26,15 +26,15 @@ class FuncionarioController(BaseController):
     
     def add_funcionario(self,id_user):
         user=AuthService().get_by_id(id_user)
-        cliente_ver=FuncionarioModel().get_by_id(id_user)
-        if cliente_ver :
-                self.redirect(f'/clientes/home/{user.id}')
+        func_ver=FuncionarioModel().get_by_id(id_user)
+        if func_ver :
+                self.redirect(f'/funcionarios/home/{user.id}')
         else:
             if request.method=='GET':
-                return self.render('clientes_form',user=user,action=f'/clientes/add/{user.id}')# sempre chamar no html o nome do parametro
+                return self.render('funcionarios_form',user=user,action=f'/funcionarios/add/{user.id}')# sempre chamar no html o nome do parametro
             else:#POST -> salvar cliente
-                self.func_service.add_cliente(user.id)
-                self.redirect(f'/clientes/home/{user.id}')
+                self.func_service.add_funcionario(user.id)
+                self.redirect(f'/funcionarios/home/{user.id}')
 
     def edit_funcionario(self,funcionario_id):
         funcionario= self.func_service.get_by_id(funcionario_id)

@@ -30,7 +30,7 @@ class FuncionarioService:
        
         
          
-        funcionario= Funcionario(id = new_id,name=name,email=email,birthdate=birthdate,salario=salario,lista_pedidos=lista_pedidos,lista_vistorias=lista_vistorias)
+        funcionario= Funcionario(id = new_id,role=1,name=name,email=email,birthdate=birthdate,salario=salario,lista_pedidos_id=lista_pedidos,lista_vistorias_id=lista_vistorias)
         self.funcionario_model.add(funcionario)
 
     def get_by_id(self,funcionario_id=0):# retorna um exclusivo
@@ -208,8 +208,18 @@ class FuncionarioService:
         funcionario=self.get_by_id(id_funcionario)
         return funcionario.salario
     
-    def add_funcionario(self):
+    def add_funcionario(self,id_user):
+        from models.auth_user import AuthUser,AuthUserModel
+        user=AuthUserModel().get_by_id(id_user)
         
-        ...
+        data_nascimento=request.forms.get('data_nascimento')
+        funcionario=Funcionario('','','','','','',salario=1000)
+        funcionario.id=user.id
+        funcionario.name=user.username
+        funcionario.birthdate=data_nascimento
+        funcionario.email=user.email
+        funcionario.senha=user.password_hash
+        self.funcionario_model.add(funcionario)
+
 
         

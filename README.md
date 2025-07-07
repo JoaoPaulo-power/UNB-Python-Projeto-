@@ -28,7 +28,8 @@ poo-python-bottle-template/
 └── .vscode/ # Configurações opcionais do VS Code
 ```
 
-
+## diagrama de classes
+![Diagrama de Class](\UNB-Python-Projeto\static\img\1000054426)
 ---
 
 ## 📁 Descrição das Pastas
