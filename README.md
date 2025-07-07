@@ -32,7 +32,7 @@ poo-python-bottle-template/
 ```
 
 ## diagrama de classes
-![Diagrama de Class](\UNB-Python-Projeto\static\img\1000054426)
+![Diagrama de Class](static\img\1000054426.jpg)
 ---
 
 ## 📁 Descrição das Pastas
@@ -41,9 +41,19 @@ poo-python-bottle-template/
 Contém as classes responsáveis por lidar com as rotas da aplicação. Exemplos:
 - `user_controller.py`: rotas para listagem, adição, edição e remoção de usuários.
 - `base_controller.py`: classe base com utilitários comuns.
+- `auth_controller.py`: são as rotas relacionadas a auteticação do login
+- `cliente_controller.py`: rotas relacionadas as ações de um 'cliente'
+- `funcionarios_controller.py`: rotas relacionadas as ações de um 'funcionario'
+- `home_controller.py`: rotas especificas da home 
 
 ### `models/`
 Define as classes que representam os dados da aplicação. Exemplo:
+- `auth_user.py`: classe `auth_user`, com atributos de um usario comum a diferencça é que esse usuario ta sendo 'rastreado' pra ser autenticado.
+- `carro.py`: classe `Carro`, com atributos como `numero_chassi`,`modelo`,`ano`,`marca`, etc.
+- `funcionario.py`: classe `Funcionario`, com atributos como `id`, `name`, `email`,igual a `auth_user`, com metodos as mais que são as listas como, `listas_vistorias_id`,`lista_pedidos_id`
+- `pedidos.py`: classe `Pedido`,É a classe de pedidos que vai ser uma solicitação do `cliente` tbm pro `funcionario` mas agora pra concertar o ``carro``
+- `vistoria.py`: classe `Vistoria`, É a classe de vistorias que vai ser uma solicitação do `cliente` pro `funcionario` pra tal achar o `problema` do carro.
+- `problema.py`: classe `Problema`, com atributos como `peca quebrada`, `valor`, `e prazo` ele vai ser adicionado ao carro durante a vistoria.
 - `user.py`: classe `User`, com atributos como `id`, `name`, `email`, etc.
 
 ### `services/`
@@ -61,6 +71,7 @@ Arquivos estáticos como:
 - `css/style.css`: estilos básicos.
 - `js/main.js`: scripts JS opcionais.
 - `img/BottleLogo.png`: exemplo de imagem.
+- `img/1000054426.png`: diagrama de classes.
 
 ### `data/`
 Armazena os arquivos `.json` que simulam o banco de dados:

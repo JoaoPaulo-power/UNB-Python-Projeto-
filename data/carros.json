@@ -5,5 +5,12 @@
         "modelo": "mobi",
         "marca": "fiat",
         "lista de problemas_id": []
+    },
+    {
+        "numero de chassi": "123",
+        "ano": "2021",
+        "modelo": "corola",
+        "marca": "toyota",
+        "lista de problemas_id": []
     }
 ]
